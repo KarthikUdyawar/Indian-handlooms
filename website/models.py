@@ -2,14 +2,25 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
-class Profile(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    # TODO add column to profile
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    profile = db.relationship('Profile')
+    company_Name = db.Column(db.String(150))
+    contact = db.Column(db.String(10), unique=True)
+    description = db.Column(db.String(500))
+    
+# class Profile(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     company_Name = db.Column(db.String(150))
+#     contact = db.Column(db.String(10))
+#     description = db.Column(db.String(500))
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+# class User(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     email = db.Column(db.String(150), unique=True)
+#     password = db.Column(db.String(150))
+#     first_name = db.Column(db.String(150))
+#     profiles = db.relationship('Profile')
