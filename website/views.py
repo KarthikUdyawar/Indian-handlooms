@@ -3,7 +3,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User #, Profile
 from . import db
-import re
+# import re
 
 views = Blueprint('views',__name__)
 
@@ -18,6 +18,8 @@ def profile():
         address = request.form.get('address')
         desc = request.form.get('desc')
 
+        # print(len(contact))
+
         if cName == '':
             cName = User.company_Name
         elif len(cName) < 3:
@@ -30,9 +32,15 @@ def profile():
             flash('First Name must be at least 3 characters.', category='error')
             firstName = User.first_name
         
+        # if contact == '':
+        #     contact = User.contact
+        # elif not (re.match('^[0-9]*$', contact)) or len(contact) == 11:                            #! This is meaningless
+        #     flash('Contact must be at 10 digits.', category='error')
+        #     contact = User.contact
+            
         if contact == '':
             contact = User.contact
-        elif not re.match('^[0-9]*$', contact) or len(contact) > 10:                            #! This is meaningless
+        elif (not contact.isdigit()) or (len(contact) != 10):                            #! This is meaningless
             flash('Contact must be at 10 digits.', category='error')
             contact = User.contact
         
