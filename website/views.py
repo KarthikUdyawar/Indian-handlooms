@@ -1,11 +1,30 @@
 from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from .models import User #, Profile
 from . import db
+import os
 # import re
 
 views = Blueprint('views',__name__)
+# app.config["IMAGE_UPLOADS"] = '\website\static\images\profile'
+
+def allowed_image(filename):
+    if not "." in filename:
+        return False
+    ext = filename.rsplit(".", 1)[1]
+    if ext.upper() in ["JPEG", "JPG", "PNG", "GIF"]:
+        return True
+    else:
+        return False
+
+def allowed_image_filesize(filesize):
+    
+    if int(filesize) <= 0.5 * 1024 * 1024:
+        return True
+    else:
+        return False
 
 @views.route('/profile', methods=['GET','POST'])
 @login_required
@@ -17,6 +36,21 @@ def profile():
         state = request.form.get('state')
         address = request.form.get('address')
         desc = request.form.get('desc')
+
+        if request.files:
+            if "filesize" in request.cookies:
+                image = request.files["image"]
+                if image.filename == "":
+                    print("No filename") #TODO image = User.image
+                # print(image)
+                elif not allowed_image_filesize(request.cookies["filesize"]):
+                    flash('Filesize exceeded maximum limit', category='error')
+                elif allowed_image(image.filename):
+                    filename = secure_filename(image.filename)
+                    image.save(os.path.join("website\static\images\profile" , filename))
+                    print("Image saved")
+                else:
+                    flash('That file extension is not allowed', category='error')
 
         # print(len(contact))
 
@@ -34,13 +68,13 @@ def profile():
         
         # if contact == '':
         #     contact = User.contact
-        # elif not (re.match('^[0-9]*$', contact)) or len(contact) == 11:                            #! This is meaningless
+        # elif not (re.match('^[0-9]*$', contact)) or len(contact) == 11:                            
         #     flash('Contact must be at 10 digits.', category='error')
         #     contact = User.contact
             
         if contact == '':
             contact = User.contact
-        elif (not contact.isdigit()) or (len(contact) != 10):                            #! This is meaningless
+        elif not (contact.isdigit() and len(contact) == 10):                            
             flash('Contact must be at 10 digits.', category='error')
             contact = User.contact
         

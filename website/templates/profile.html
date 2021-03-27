@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <h3 align="center">Edit profile</h3>
     <div class="form-group">
         <div class="row">
@@ -121,6 +121,14 @@
         <h6>{{user.description}}</h6>
         <input type="text" name="desc" class="form-control" id="desc" placeholder="Enter your description"/>
     </div>
+
+    <div class="form-group">
+        <label for="image">Select image</label>
+        <input type="file" name="image" class="form-control"  id="image" oninput="filesize(this);"/>
+        <!-- <label class="form-control" >Select image...</label>  -->
+    </div>
+
+
     <!-- <br/>
     <h3>Security</h3>
     <div class="form-group">
@@ -142,5 +150,13 @@
 <h2>{{user.state}}</h2>
 <h2>{{user.address}}</h2>
 <h2>{{user.description}}</h2> -->
+
+<script>
+
+    function filesize(elem){
+    document.cookie = `filesize=${elem.files[0].size}`
+    }
+
+</script>
 
 {% endblock %}
