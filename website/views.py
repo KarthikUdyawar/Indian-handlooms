@@ -34,6 +34,7 @@ def profile():
         contact = request.form.get('contact')
         state = request.form.get('state')
         address = request.form.get('address')
+        pName = request.form.get('pName')
         desc = request.form.get('desc')
         path_image = request.form.get('image')
 
@@ -90,6 +91,12 @@ def profile():
             flash('Address must be at least 3 characters.', category='error')
             address = User.address
             
+        if pName == '':
+            pName = User.product_name
+        elif len(pName) < 3:
+            flash('Product name must be at least 3 characters.', category='error')
+            pName = User.product_name
+            
         if desc == '':
             desc = User.description
         elif len(desc) < 3:
@@ -132,6 +139,7 @@ def profile():
         user.email = current_user.email
         user.password = current_user.password
         user.image = path_image
+        user.product_name = pName
         
         # newprofile = User(first_name=firstName, contact=contact, company_Name=cName, state=state, address=address, description=desc, email=current_user.email, password=current_user.password)
         # db.session.add(newprofile)

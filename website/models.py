@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     state = db.Column(db.String(20))
     address = db.Column(db.String(200))
     image = db.Column(db.String(200))
+    product_name = db.Column(db.String(100))
     
 # class Profile(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
