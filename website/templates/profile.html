@@ -125,10 +125,19 @@
     <div class="form-group">
         <label for="image">Select image</label>
         <input type="file" name="image" class="form-control"  id="image" oninput="filesize(this);"/>
-        <!-- <label class="form-control" >Select image...</label>  -->
+        <img src="{{user.image[8:]}}" alt="{{user.description}}" class="rounded mx-auto d-block" width="320" height="200">
     </div>
 
+    <!-- <img src="static/images/profile/default.png"
+    alt="{{user.description}}"
+    width="320"
+    height="200"> -->
 
+    <!-- <img src= "/website/static/images/profile/default.png"
+        alt="{{user.description}}"
+        width="320"
+        height="200">  -->
+    
     <!-- <br/>
     <h3>Security</h3>
     <div class="form-group">

@@ -20,7 +20,6 @@ def allowed_image(filename):
         return False
 
 def allowed_image_filesize(filesize):
-    
     if int(filesize) <= 0.5 * 1024 * 1024:
         return True
     else:
@@ -36,19 +35,23 @@ def profile():
         state = request.form.get('state')
         address = request.form.get('address')
         desc = request.form.get('desc')
+        path_image = request.form.get('image')
 
         if request.files:
             if "filesize" in request.cookies:
                 image = request.files["image"]
                 if image.filename == "":
-                    print("No filename") #TODO image = User.image
+                    # print("No filename") 
+                    path_image = User.image
                 # print(image)
                 elif not allowed_image_filesize(request.cookies["filesize"]):
-                    flash('Filesize exceeded maximum limit', category='error')
+                    flash('Filesize exceeded maximum limit (500 Kb)', category='error')
+                    path_image = User.image
                 elif allowed_image(image.filename):
                     filename = secure_filename(image.filename)
-                    image.save(os.path.join("website\static\images\profile" , filename))
-                    print("Image saved")
+                    path_image = os.path.join("website/static/images/profile/" , filename)
+                    image.save(path_image)
+                    # print("Image saved")
                 else:
                     flash('That file extension is not allowed', category='error')
 
@@ -128,6 +131,7 @@ def profile():
         user.description = desc
         user.email = current_user.email
         user.password = current_user.password
+        user.image = path_image
         
         # newprofile = User(first_name=firstName, contact=contact, company_Name=cName, state=state, address=address, description=desc, email=current_user.email, password=current_user.password)
         # db.session.add(newprofile)
