@@ -18,6 +18,13 @@ def about():
 def database():
     return render_template("database.html", user=current_user)
 
+@auth.route('/state/<state_name>', methods=['GET','POST'])
+def state(state_name):
+    # print(state_name)
+    # user=User.query.filter_by(state = 'state_name')
+    # print(user)
+    return render_template("state.html", user=User.query.filter_by(state = state_name), title=state_name)
+
 @auth.route('/login', methods=['GET','POST'])
 def login(): 
     if request.method == 'POST':
@@ -49,14 +56,14 @@ def sign_up():
             flash('Email already exists.', category='error')
         elif len(email) < 4:
             flash('Email must be at least 3 characters.',category='error')
-        elif len(firstName) < 2:
+        elif len(firstName) < 3:
             flash('First name must be at least 2 characters.',category='error')
         elif password1 != password2:
             flash('Password does not match.',category='error')
-        elif len(password1) < 7:
+        elif len(password1) < 8:
             flash('Password must be at least 7 characters.',category='error')
         else:
-            new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1,method='sha256'))
+            new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', company_Name='None', state='None', address='None', product_name='None', description='None', image='website/static/images/profile/00default.png')
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user,remember=True)

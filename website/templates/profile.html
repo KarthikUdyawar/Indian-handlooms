@@ -5,5 +5,180 @@
 {% endblock %}
 
 {% block content %}
-    <h3>This is the profile page</h3>
+<form method="POST" enctype="multipart/form-data">
+    <h3 align="center">Edit profile</h3>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="cName">Company Name</label>
+            </div>
+            <div class="col">
+                <h6>{{user.company_Name}}</h6>
+            </div>
+            <div class="col">
+                <input type="text" name="cName" class="form-control" id="cName" placeholder="Enter your company name"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="col">
+                <h6>{{user.first_name}}</h6>
+            </div>
+            <div class="col">
+                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter your first name"/>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="email">Email address</label>
+            </div>
+            <div class="col">
+                <h6>{{user.email}}</h6>
+            </div>
+            <div class="col">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email address"/>
+            </div>
+        </div>
+    </div> -->
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="contact">Contact number</label>
+            </div>
+            <div class="col">
+                <h6>{{user.contact}}</h6>
+            </div>
+            <div class="col">
+                <input type="text" name="contact" class="form-control" id="contact" placeholder="Enter your contact number"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="state">State</label>
+            </div>
+            <div class="col">
+                <h6>{{user.state}}</h6>
+            </div>
+            <div class="col">
+                <select id="state" class="form-control" name="state" placeholder="Enter your state">
+                    <option value="None">Select State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam </option>
+                    <option value="Bihar">Bihar </option>
+                    <option value="Chhattisgarh">Chhattisgarh </option>
+                    <option value="Delhi">Delhi </option>
+                    <option value="Gujarat">Gujarat </option>
+                    <option value="Haryana">Haryana </option>
+                    <option value="Himachal Pradesh">Himachal Pradesh </option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir </option>
+                    <option value="Jharkhand">Jharkhand </option>
+                    <option value="Karnataka">Karnataka </option>
+                    <option value="Kerala">Kerala </option>
+                    <option value="Madhya Pradesh">Madhya Pradesh </option>
+                    <option value="Maharashtra">Maharashtra </option>
+                    <option value="Manipur">Manipur </option>
+                    <option value="Meghalaya">Meghalaya </option>
+                    <option value="Mizoram">Mizoram </option>
+                    <option value="Nagaland">Nagaland </option>
+                    <option value="Odisha">Odisha </option>
+                    <option value="Punjab">Punjab </option>
+                    <option value="Rajasthan">Rajasthan </option>
+                    <option value="Sikkim">Sikkim </option>
+                    <option value="Tamil Nadu">Tamil Nadu </option>
+                    <option value="Telangana">Telangana </option>
+                    <option value="Tripura">Tripura </option>
+                    <option value="Uttar Pradesh">Uttar Pradesh </option>
+                    <option value="Uttarakhand">Uttarakhand </option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="address">Address</label>
+            </div>
+            <div class="col">
+                <h6>{{user.address}}</h6>
+            </div>
+            <div class="col">
+                <input type="text" name="address" class="form-control" id="address" placeholder="Enter your address"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="pName">Product Name</label>
+            </div>
+            <div class="col">
+                <h6>{{user.product_name}}</h6>
+            </div>
+            <div class="col">
+                <input type="text" name="pName" class="form-control" id="pName" placeholder="Enter your product name"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <h6>{{user.description}}</h6>
+        <input type="text" name="desc" class="form-control" id="desc" placeholder="Enter your description"/>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Select image</label>
+        <input type="file" name="image" class="form-control"  id="image" oninput="filesize(this);"/>
+        <img src="{{user.image[8:]}}" alt="{{user.description}}" class="rounded mx-auto d-block" width="320" height="200">
+    </div>
+
+    <!-- <img src="static/images/profile/default.png"
+    alt="{{user.description}}"
+    width="320"
+    height="200"> -->
+
+    <!-- <img src= "/website/static/images/profile/default.png"
+        alt="{{user.description}}"
+        width="320"
+        height="200">  -->
+    
+    <!-- <br/>
+    <h3>Security</h3>
+    <div class="form-group">
+        <label for="password1">Password</label>
+        <h6>{{user.Password}}</h6>
+        <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter your password"/>
+    </div>
+    <div class="form-group">
+        <label for="password2">Password (Confirm)</label>
+        <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm password"/>
+    </div> -->
+    <br/>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<!-- <h2>{{user.company_Name}}</h2>
+<h2>{{user.first_name}}</h2>
+<h2>{{user.email}}</h2>
+<h2>{{user.contact}}</h2>
+<h2>{{user.state}}</h2>
+<h2>{{user.address}}</h2>
+<h2>{{user.description}}</h2> -->
+
+<script>
+
+    function filesize(elem){
+    document.cookie = `filesize=${elem.files[0].size}`
+    }
+
+</script>
+
 {% endblock %}
