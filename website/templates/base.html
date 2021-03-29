@@ -21,6 +21,9 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
+        <!-- <script type="text/javascript" src = "static/javascript/mapdata2.js" > </script> 
+        <script type="text/javascript" src = "static/javascript/countrymap2.js" > </script>  -->
+
         <!-- title -->
         <title>{% block title%}{% endblock %}</title>
     </head>
@@ -110,7 +113,9 @@
         </script>
 
         <!-- Custom JS -->
-        <script type="text/javascript" src = "{{ url_for('static', filename='javascript/index.js') }}" > </script> 
+        <script type="text/javascript" src = "static/javascript/index.js" > </script>
+        <script type="text/javascript" src = "static/javascript/mapdata.js" > </script> 
+        <script type="text/javascript" src = "static/javascript/countrymap.js" > </script>  
 
     </body>
 </html>

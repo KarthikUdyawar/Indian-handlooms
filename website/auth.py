@@ -18,6 +18,13 @@ def about():
 def database():
     return render_template("database.html", user=current_user)
 
+@auth.route('/state/<state_name>', methods=['GET','POST'])
+def state(state_name):
+    # print(state_name)
+    # user=User.query.filter_by(state = 'state_name')
+    # print(user)
+    return render_template("state.html", user=User.query.filter_by(state = state_name), title=state_name)
+
 @auth.route('/login', methods=['GET','POST'])
 def login(): 
     if request.method == 'POST':
