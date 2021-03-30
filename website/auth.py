@@ -23,7 +23,16 @@ def state(state_name):
     # print(state_name)
     # user=User.query.filter_by(state = 'state_name')
     # print(user)
+    # if request.method == 'POST':
+    #     id = request.form.get('id')
+    #     # user=User.query.filter_by(id = id).first()
+    #     print("ID",id)
+    #     # return redirect(url_for('auth.info', state = state_name,id = id))
     return render_template("state.html", user=User.query.filter_by(state = state_name), title=state_name)
+
+@auth.route('/state/<state_name>/info/<id>', methods=['GET','POST'])
+def info(state_name,id):
+    return render_template("info.html", user=User.query.filter_by(id = id) , title=id)
 
 @auth.route('/login', methods=['GET','POST'])
 def login(): 

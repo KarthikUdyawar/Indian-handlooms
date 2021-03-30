@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title%}
+    Info - India Handlooms website
+{% endblock %}
+
+{% block content %}
+    <h3>This is the Info page</h3>
+    {% for u in user %}
+    <h3>{{title}}</h3>
+    <h3>{{u.company_Name}}</h3>
+    <h3>{{u.first_name}}</h3>
+    <h3>{{u.product_name}}</h3>
+    <h3>{{u.email}}</h3>
+    <h3>{{u.contact}}</h3>
+    <h3>{{u.state}}</h3>
+    <h3>{{u.address}}</h3>
+    <h3>{{u.description}}</h3>
+
+    {% endfor %}
+    
+    <!-- <h3>{{title}}</h3>
+    <h3>{{user.company_Name}}</h3> -->
+{% endblock %}
