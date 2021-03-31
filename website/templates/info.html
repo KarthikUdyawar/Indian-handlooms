@@ -7,7 +7,7 @@
 {% block content %}
     <h3>This is the Info page</h3>
     {% for u in user %}
-    <h3>{{title}}</h3>
+    <!-- <h3>{{title}}</h3>
     <h3>{{u.company_Name}}</h3>
     <h3>{{u.first_name}}</h3>
     <h3>{{u.product_name}}</h3>
@@ -15,10 +15,79 @@
     <h3>{{u.contact}}</h3>
     <h3>{{u.state}}</h3>
     <h3>{{u.address}}</h3>
-    <h3>{{u.description}}</h3>
+    <h3>{{u.description}}</h3> -->
 
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="cName">Company Name</label>
+            </div>
+            <div class="col">
+                <h6>{{u.company_Name}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="col">
+                <h6>{{u.first_name}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="contact">Contact number</label>
+            </div>
+            <div class="col">
+                <h6>{{u.contact}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="state">State</label>
+            </div>
+            <div class="col">
+                <h6>{{u.state}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="address">Address</label>
+            </div>
+            <div class="col">
+                <h6>{{u.address}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="pName">Product Name</label>
+            </div>
+            <div class="col">
+                <h6>{{u.product_name}}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <h6>{{u.description}}</h6>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image</label>
+        <img src="/{{u.image[8:]}}" alt="{{u.description}}" class="rounded mx-auto d-block" width="320" height="200">
+    </div>
+    <br/>
     {% endfor %}
-    
     <!-- <h3>{{title}}</h3>
     <h3>{{user.company_Name}}</h3> -->
 {% endblock %}
