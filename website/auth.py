@@ -21,14 +21,6 @@ def database():
 
 @auth.route('/state/<state_name>', methods=['GET','POST'])
 def state(state_name):
-    # print(state_name)
-    # user=User.query.filter_by(state = 'state_name')
-    # print(user)
-    # if request.method == 'POST':
-    #     id = request.form.get('id')
-    #     # user=User.query.filter_by(id = id).first()
-    #     print("ID",id)
-    #     # return redirect(url_for('auth.info', state = state_name,id = id))
     state_select = User.query.filter_by(state = state_name)
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
