@@ -1,7 +1,6 @@
 var simplemaps_countrymap_mapdata={
   main_settings: {
    //General settings
-    width: "responsive", //'700' or 'responsive'
     background_color: "#FFFFFF",
     background_transparent: "yes",
     border_color: "#ffffff",
@@ -23,7 +22,6 @@ var simplemaps_countrymap_mapdata={
     location_url: "",
     location_size: 25,
     location_type: "square",
-    location_image_source: "frog.png",
     location_border_color: "#FFFFFF",
     location_border: 2,
     location_hover_border: 2.5,
@@ -37,7 +35,7 @@ var simplemaps_countrymap_mapdata={
     label_font: "Arial",
     hide_labels: "no",
     hide_eastern_labels: "no",
-   
+  
     //Zoom settings
     zoom: "yes",
     back_image: "no",

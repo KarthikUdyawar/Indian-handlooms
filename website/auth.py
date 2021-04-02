@@ -21,14 +21,6 @@ def database():
 
 @auth.route('/state/<state_name>', methods=['GET','POST'])
 def state(state_name):
-    # print(state_name)
-    # user=User.query.filter_by(state = 'state_name')
-    # print(user)
-    # if request.method == 'POST':
-    #     id = request.form.get('id')
-    #     # user=User.query.filter_by(id = id).first()
-    #     print("ID",id)
-    #     # return redirect(url_for('auth.info', state = state_name,id = id))
     state_select = User.query.filter_by(state = state_name)
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
@@ -46,7 +38,6 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
@@ -66,7 +57,6 @@ def sign_up():
         firstName = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-        
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
