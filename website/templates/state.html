@@ -6,6 +6,7 @@
 
 {% block content %}
     <h3>This is the {{title}} page</h3>
+
     <div class="search">
         <div class="row">
             <div class="col-8">
@@ -34,21 +35,41 @@
                     <th scope="col">First Name</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">More Info</th>
+                    <!-- <th scope="col">State Name</th> -->
                 </tr>
             </thead>
             <tbody>
                 {% for u in user %}
                     <tr>
+                        <!-- <th scope="user.id"></th> -->
                         <td>{{ u.id }}</td>
                         <td>{{ u.company_Name }}</td>
                         <td>{{ u.first_name }}</td>
                         <td>{{ u.product_name }}</td>
                         <td>
+                                <!-- <button type="submit" class="btn btn-info" name='id' id="id" href="/state/{{title}}/info/{{u.id}}">Info</button> -->
                             <a href="/state/{{title}}/info/{{u.id}}" >Info</a>
                         </td>
-                    </tr>
+                        <!-- <td>{{ u.state }}</td> -->
+                        </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <!-- {% for u in user %}
+        <ul id="user.id">
+        <li>
+            <span class="field-name">Company Name:</span>
+            <span class="field-value">{{ u.company_Name }}</span>
+        </li>
+        <li>
+            <span class="field-name">First Name:</span>
+            <span class="field-value">{{ u.first_name }}</span>
+        </li>
+        <li>
+            <span class="field-name">Product Name:</span>
+            <span class="field-value">{{ u.product_name }}</span>
+        </li>
+        </ul>
+        {% endfor %} -->
     </div>
 {% endblock %}
