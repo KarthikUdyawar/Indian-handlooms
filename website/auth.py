@@ -3,6 +3,7 @@ from .models import User
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, login_user, logout_user, current_user
+from sqlalchemy import and_
 
 auth = Blueprint('auth',__name__)
 
@@ -20,10 +21,17 @@ def database():
 
 @auth.route('/state/<state_name>', methods=['GET','POST'])
 def state(state_name):
-    # print(state_name)
-    # user=User.query.filter_by(state = 'state_name')
-    # print(user)
-    return render_template("state.html", user=User.query.filter_by(state = state_name), title=state_name)
+    state_select = User.query.filter_by(state = state_name)
+    if request.method == 'POST' and 'tag' in request.form:
+        tag = request.form["tag"]
+        search = "%{}%".format(tag)
+        pname = User.query.filter(and_(User.state == state_name,User.product_name.like(search)))
+        return render_template('state.html', user=pname, tag=tag, title=state_name)
+    return render_template("state.html", user=state_select, title=state_name)
+
+@auth.route('/state/<state_name>/info/<id>', methods=['GET','POST'])
+def info(state_name,id):
+    return render_template("info.html", user=User.query.filter_by(id = id) , title=id)
 
 @auth.route('/login', methods=['GET','POST'])
 def login(): 
