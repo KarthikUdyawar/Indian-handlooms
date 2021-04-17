@@ -15,6 +15,14 @@ def home():
 def about():
     return render_template("about.html", user=current_user)
 
+@auth.route('/index')
+def index():
+    return render_template("index.html", user=current_user)
+
+@auth.route('/contact')
+def contact():
+    return render_template("contact.html", user=current_user)
+
 @auth.route('/database')
 def database():
     return render_template("database.html", user=current_user)
