@@ -7,15 +7,15 @@ from sqlalchemy import and_
 
 auth = Blueprint('auth',__name__)
 
-@auth.route('/')
-def home():
-    return render_template("home.html", user=current_user)
+# @auth.route('/')
+# def home():
+#     return render_template("home.html", user=current_user)
 
 @auth.route('/about')
 def about():
     return render_template("about.html", user=current_user)
 
-@auth.route('/index')
+@auth.route('/')
 def index():
     return render_template("index.html", user=current_user)
 
