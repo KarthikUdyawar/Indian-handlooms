@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User, Contact
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, login_user, logout_user, current_user
@@ -43,8 +43,19 @@ def central():
 def south():
     return render_template("south.html", user=current_user)
 
-@auth.route('/contact')
+@auth.route('/contact', methods=['GET','POST'])
 def contact():
+    if request.method == 'POST':  
+        name = request.form.get('name')
+        email = request.form.get('email')
+        contact = request.form.get('contact')
+        cName = request.form.get('cName')
+        message = request.form.get('message')
+        
+        feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+        db.session.add(feedback)
+        db.session.commit()
+        
     return render_template("contact.html", user=current_user)
 
 @auth.route('/database')
