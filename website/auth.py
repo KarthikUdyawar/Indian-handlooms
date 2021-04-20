@@ -19,6 +19,30 @@ def about():
 def index():
     return render_template("index.html", user=current_user)
 
+@auth.route('/east')
+def east():
+    return render_template("east.html", user=current_user)
+
+@auth.route('/west')
+def west():
+    return render_template("west.html", user=current_user)
+
+@auth.route('/north')
+def north():
+    return render_template("north.html", user=current_user)
+
+@auth.route('/northeast')
+def northeast():
+    return render_template("northeast.html", user=current_user)
+
+@auth.route('/central')
+def central():
+    return render_template("central.html", user=current_user)
+
+@auth.route('/south')
+def south():
+    return render_template("south.html", user=current_user)
+
 @auth.route('/contact')
 def contact():
     return render_template("contact.html", user=current_user)
