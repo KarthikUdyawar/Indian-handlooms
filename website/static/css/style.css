@@ -41,8 +41,20 @@
         background: rgb(5, 5, 61);
     }
     
+    .smoothScroll {
+        text-decoration: none;
+        font-family: Segoe UI;
+        margin: 24px;
+    }
+    
     .navbar-toggler {
-        border: none!important;
+        border: white!important;
+        background-color: white;
+    }
+    
+    .navbar-toggler-icon {
+        color: white;
+        background-color: white;
     }
     
     .nav-link {
@@ -63,8 +75,10 @@
     /*-------SLIDER------*/
     
     #slider {
-        width: 100%;
+        width: 70%;
         padding-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .carousel-caption {
@@ -103,6 +117,7 @@
         text-align: justify;
         margin-left: 150px;
         margin-right: 150px;
+        font-size: 18px;
     }
     /*-------whyhandloom------*/
     
@@ -130,4 +145,5 @@
         text-align: justify;
         margin-left: 150px;
         margin-right: 150px;
+        font-size: 18px;
     }
