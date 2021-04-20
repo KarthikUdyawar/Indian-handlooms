@@ -14,6 +14,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
+
+
 </head>
 
 <body>
@@ -62,27 +65,45 @@
             </nav>
 
         </section>
-        <h3 align=center style="padding-top: 50px;">LOGIN</h3>
-        {% block content %}
-        <div class="container">
-            <form method="POST">
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email address" />
+
+        <div class="main">
+            <section class="login">
+
+                <div class="container">
+                    <div class="login-content">
+                        <form method="POST" id="login-form" class="login-form">
+                            <h2 class="form-title">LOGIN</h2><br>
+
+                            <div class="form-group">
+                                <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-input" name="password" id="password" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Log In" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password1">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" />
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="remember"> Remember me</label>
-                </div>
-                <br/>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+            </section>
         </div>
 
+
+        <script src="static/javascript/main.js"></script>
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-23581568-13');
+        </script>
+    </header>
 </body>
 
 </html>
-{% endblock %}
