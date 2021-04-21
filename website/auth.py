@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User, Contact
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, login_user, logout_user, current_user
@@ -7,13 +7,56 @@ from sqlalchemy import and_
 
 auth = Blueprint('auth',__name__)
 
-@auth.route('/')
-def home():
-    return render_template("home.html", user=current_user)
+# @auth.route('/')
+# def home():
+#     return render_template("home.html", user=current_user)
 
 @auth.route('/about')
 def about():
     return render_template("about.html", user=current_user)
+
+@auth.route('/')
+def index():
+    return render_template("index.html", user=current_user)
+
+@auth.route('/east')
+def east():
+    return render_template("east.html", user=current_user)
+
+@auth.route('/west')
+def west():
+    return render_template("west.html", user=current_user)
+
+@auth.route('/north')
+def north():
+    return render_template("north.html", user=current_user)
+
+@auth.route('/northeast')
+def northeast():
+    return render_template("northeast.html", user=current_user)
+
+@auth.route('/central')
+def central():
+    return render_template("central.html", user=current_user)
+
+@auth.route('/south')
+def south():
+    return render_template("south.html", user=current_user)
+
+@auth.route('/contact', methods=['GET','POST'])
+def contact():
+    if request.method == 'POST':  
+        name = request.form.get('name')
+        email = request.form.get('email')
+        contact = request.form.get('contact')
+        cName = request.form.get('cName')
+        message = request.form.get('message')
+        
+        feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+        db.session.add(feedback)
+        db.session.commit()
+        
+    return render_template("contact.html", user=current_user)
 
 @auth.route('/database')
 def database():
@@ -39,16 +82,19 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         
-        user = User.query.filter_by(email=email).first()
-        if user:
-            if check_password_hash(user.password, password):
-                flash('Login successfully!',category='success')
-                login_user(user,remember=True)
-                return redirect(url_for('views.profile'))
-            else:
-                flash('Incorrect password',category='error')
+        if email == "admin@mail.com" and password == "admin123":
+            return redirect(url_for('views.admin'))
         else:
-            flash('User does not exist!',category='error')
+            user = User.query.filter_by(email=email).first()
+            if user:
+                if check_password_hash(user.password, password):
+                    flash('Login successfully!',category='success')
+                    login_user(user,remember=True)
+                    return redirect(url_for('views.profile'))
+                else:
+                    flash('Incorrect password',category='error')
+            else:
+                flash('User does not exist!',category='error')
     return render_template("login.html", user=current_user)
 
 @auth.route('/sign-up', methods=['GET','POST'])

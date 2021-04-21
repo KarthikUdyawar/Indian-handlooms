@@ -12,5 +12,13 @@ class User(db.Model, UserMixin):
     description = db.Column(db.String(500))
     state = db.Column(db.String(20))
     address = db.Column(db.String(200))
-    image = db.Column(db.String(200))
+    image = db.Column(db.String(200), default='website/static/images/profile/00default.png')
     product_name = db.Column(db.String(100))
+    
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    email = db.Column(db.String(150)) 
+    contact = db.Column(db.String(10)) 
+    company_Name = db.Column(db.String(150))
+    message = db.Column(db.String(500))
