@@ -141,4 +141,5 @@ def sign_up():
 @login_required
 def logout():
     logout_user()
+    flash('Successfully logout!',category='success')
     return redirect(url_for('auth.login'))
