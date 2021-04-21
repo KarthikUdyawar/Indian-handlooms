@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     description = db.Column(db.String(500))
     state = db.Column(db.String(20))
     address = db.Column(db.String(200))
-    image = db.Column(db.String(200))
+    image = db.Column(db.String(200), default='website/static/images/profile/00default.png')
     product_name = db.Column(db.String(100))
     
 class Contact(db.Model):
