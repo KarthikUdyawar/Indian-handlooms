@@ -43,10 +43,6 @@ def central():
 def south():
     return render_template("south.html", user=current_user)
 
-@auth.route('/admin')
-def admin():
-    return render_template("admin.html", user=current_user)
-
 @auth.route('/contact', methods=['GET','POST'])
 def contact():
     if request.method == 'POST':  
@@ -87,7 +83,7 @@ def login():
         password = request.form.get('password')
         
         if email == "admin@mail.com" and password == "admin123":
-            return redirect(url_for('auth.admin'))
+            return redirect(url_for('views.admin'))
         else:
             user = User.query.filter_by(email=email).first()
             if user:

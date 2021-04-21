@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from .models import User 
+from .models import User ,Contact
 from . import db
 import os
 
@@ -106,3 +106,8 @@ def profile():
         flash('Profile edited!',category='success')
         
     return render_template("profile.html", user=current_user)
+
+@views.route('/admin')
+def admin():
+    feedback = Contact.query.all()
+    return render_template("admin.html", user=feedback)
