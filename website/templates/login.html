@@ -64,8 +64,6 @@
 
             </nav>
 
-        </section>
-
         <!-- message flash -->
         {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
@@ -88,6 +86,10 @@
             {% endfor%}
         {% endif %}
     {% endwith %}
+
+        </section>
+
+        
 
         <div class="main">
             <section class="login">
