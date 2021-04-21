@@ -66,6 +66,7 @@ def contact():
             feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
             db.session.add(feedback)
             db.session.commit()
+            flash('Feedback successfully send!',category='success')
         
     return render_template("contact.html", user=current_user)
 
@@ -140,4 +141,5 @@ def sign_up():
 @login_required
 def logout():
     logout_user()
+    flash('Successfully logout!',category='success')
     return redirect(url_for('auth.login'))
