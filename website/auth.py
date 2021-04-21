@@ -43,6 +43,10 @@ def central():
 def south():
     return render_template("south.html", user=current_user)
 
+@auth.route('/admin')
+def admin():
+    return render_template("admin.html", user=current_user)
+
 @auth.route('/contact', methods=['GET','POST'])
 def contact():
     if request.method == 'POST':  
@@ -82,16 +86,19 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         
-        user = User.query.filter_by(email=email).first()
-        if user:
-            if check_password_hash(user.password, password):
-                flash('Login successfully!',category='success')
-                login_user(user,remember=True)
-                return redirect(url_for('views.profile'))
-            else:
-                flash('Incorrect password',category='error')
+        if email == "admin@mail.com" and password == "admin123":
+            return redirect(url_for('auth.admin'))
         else:
-            flash('User does not exist!',category='error')
+            user = User.query.filter_by(email=email).first()
+            if user:
+                if check_password_hash(user.password, password):
+                    flash('Login successfully!',category='success')
+                    login_user(user,remember=True)
+                    return redirect(url_for('views.profile'))
+                else:
+                    flash('Incorrect password',category='error')
+            else:
+                flash('User does not exist!',category='error')
     return render_template("login.html", user=current_user)
 
 @auth.route('/sign-up', methods=['GET','POST'])
