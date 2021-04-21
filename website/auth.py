@@ -52,9 +52,20 @@ def contact():
         cName = request.form.get('cName')
         message = request.form.get('message')
         
-        feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
-        db.session.add(feedback)
-        db.session.commit()
+        if len(name) < 3:
+            flash('Name must be at least 2 characters.',category='error')
+        elif len(email) < 3:
+            flash('Email must be at least 3 characters.',category='error')
+        elif not (contact.isdigit() and len(contact) == 10):                            
+            flash('Contact must be at 10 digits.', category='error')
+        elif len(cName) < 3:
+            flash('Company name must be at least 3 characters.',category='error')
+        elif len(message) < 3:
+            flash('Message must be at least 3 characters.',category='error')    
+        else:
+            feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+            db.session.add(feedback)
+            db.session.commit()
         
     return render_template("contact.html", user=current_user)
 

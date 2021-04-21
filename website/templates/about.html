@@ -3,8 +3,13 @@
 <head>
 
     <title>
-        Home - India Handlooms website
+        About - India Handlooms website
     </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="\static\images\icon\logo1.png">
+    
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/aboutstyle.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -55,6 +60,7 @@
             position: relative;
             margin: center;
             padding-top: 65px;
+            padding-left: 90px;
         }
         /* Caption text */
         
@@ -111,20 +117,19 @@
 </head>
 
 <body>
-    <header>
         <!-------Navigationbar------>
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#" style="color: white;">India's Handloom Products</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon" style="color: white; "></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <li class="nav-item">
-                                <a class="nav-link" id="Home" href="/">HOME</a>
-                            </li>
+                            <a class="nav-link" id="Home" href="/">HOME</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="about" href="/about">ABOUT</a>
                         </li>
                         <li class="nav-item">
@@ -154,7 +159,6 @@
                 </div>
 
             </nav>
-
         </section>
 
 
@@ -231,7 +235,7 @@
             <br>
             <div>
                 <div>
-                    <h1 class="w3-text-teal" style="margin-left: 400px;">HANDLOOMS IN INDIA</h1>
+                    <h1 class="w3-text-teal" style="margin-left: 450px;">HANDLOOMS IN INDIA</h1>
                     <hr style="margin-left: 220px;margin-right:150px;;color: rgb(36, 226, 226);">
                     <p style=" margin-left: 130px; font-size: 20px;
                     margin-right:100px; text-align: justify;justify-content: center;padding-bottom: 30px;">Handloom products in India are finely woven texture, where the exchange of structure and example, theme, weaving and painting or other compatible changes and blends, makes every item novel, everything as particular as the following.
@@ -271,7 +275,7 @@
                 overlayBg.style.display = "none ";
             }
         </script>
-    </header>
+
 </body>
 
 </html>
