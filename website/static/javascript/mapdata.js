@@ -200,8 +200,8 @@ var simplemaps_countrymap_mapdata={
       url: "state/Uttar Pradesh"
     },
     "34": {
-      name: "Uttaranchal",
-      url: "state/Uttaranchal"
+      name: "Uttarakhand",
+      url: "state/Uttarakhand"
     },
     "35": {
       name: "West Bengal",
