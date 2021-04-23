@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, Contact
+from .models import User, Contact, Costumer
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, login_user, logout_user, current_user
@@ -93,10 +93,11 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        role = request.form.get('role')     
         
         if email == "admin@mail.com" and password == "admin123":
             return redirect(url_for('views.admin'))
-        else:
+        elif role == 'weavers':
             user = User.query.filter_by(email=email).first()
             if user:
                 if check_password_hash(user.password, password):
@@ -107,6 +108,18 @@ def login():
                     flash('Incorrect password',category='error')
             else:
                 flash('User does not exist!',category='error')
+        elif role == 'costumer':
+            user = Costumer.query.filter_by(email=email).first()
+            if user:
+                if check_password_hash(user.password, password):
+                    flash('Login successfully!',category='success')
+                    login_user(user,remember=True)
+                    return redirect(url_for('views.order'))
+                else:
+                    flash('Incorrect password',category='error')
+            else:
+                flash('User does not exist!',category='error')
+            
     return render_template("login.html", user=current_user)
 
 @auth.route('/sign-up', methods=['GET','POST'])
@@ -116,25 +129,46 @@ def sign_up():
         firstName = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        role = request.form.get('role')        
         
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash('Email already exists.', category='error')
-        elif len(email) < 4:
-            flash('Email must be at least 3 characters.',category='error')
-        elif len(firstName) < 3:
-            flash('First name must be at least 2 characters.',category='error')
-        elif password1 != password2:
-            flash('Password does not match.',category='error')
-        elif len(password1) < 8:
-            flash('Password must be at least 7 characters.',category='error')
-        else:
-            new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', company_Name='None', state='None', address='None', product_name='None', description='None', image='website/static/images/profile/00default.png')
-            db.session.add(new_user)
-            db.session.commit()
-            login_user(new_user,remember=True)
-            flash('Account created!.',category='success')
-            return redirect(url_for('views.profile'))
+        if role == 'weavers':
+            user = User.query.filter_by(email=email).first()
+            if user:
+                flash('Email already exists.', category='error')
+            elif len(email) < 4:
+                flash('Email must be at least 3 characters.',category='error')
+            elif len(firstName) < 3:
+                flash('First name must be at least 2 characters.',category='error')
+            elif password1 != password2:
+                flash('Password does not match.',category='error')
+            elif len(password1) < 8:
+                flash('Password must be at least 7 characters.',category='error')
+            else:
+                new_user = User(email=email, first_name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', company_Name='None', state='None', address='None', product_name='None', description='None', image='website/static/images/profile/00default.png')
+                db.session.add(new_user)
+                db.session.commit()
+                login_user(new_user,remember=True)
+                flash('Account created!.',category='success')
+                return redirect(url_for('views.profile'))
+        elif role == 'costumer':
+            user = Costumer.query.filter_by(email=email).first()
+            if user:
+                flash('Email already exists.', category='error')
+            elif len(email) < 4:
+                flash('Email must be at least 3 characters.',category='error')
+            elif len(firstName) < 3:
+                flash('First name must be at least 2 characters.',category='error')
+            elif password1 != password2:
+                flash('Password does not match.',category='error')
+            elif len(password1) < 8:
+                flash('Password must be at least 7 characters.',category='error')
+            else:
+                new_user = Costumer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', message='None')
+                db.session.add(new_user)
+                db.session.commit()
+                login_user(new_user,remember=True)
+                flash('Account created!.',category='success')
+                return redirect(url_for('views.order'))
     return render_template("signUp.html", user=current_user)
 
 @auth.route('/logout')

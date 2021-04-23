@@ -22,3 +22,12 @@ class Contact(db.Model):
     contact = db.Column(db.String(10)) 
     company_Name = db.Column(db.String(150))
     message = db.Column(db.String(500))
+    
+class Costumer(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    email = db.Column(db.String(150)) 
+    password = db.Column(db.String(150))
+    contact = db.Column(db.String(10)) 
+    company_Name = db.Column(db.String(100))
+    message = db.Column(db.String(1000))
