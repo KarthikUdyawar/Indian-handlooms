@@ -2,7 +2,7 @@
 
 <head>
     <title>
-        Admin - India Handlooms website
+        Dashboard - India Handlooms website
     </title>
 
     <meta charset="utf-8">
@@ -77,7 +77,7 @@
         </section>
         <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
         <br><br>
-        <h3>Feedback</h3>
+        <h3>Dashboard</h3>
         <style>
             h3 {
                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -90,37 +90,10 @@
             }
         </style>
         <br>
-        <!-- <div class="search">
-            <div class="row">
-                <div>
-                    <h4>Search For : {{ tag}}</h4>
-                    <style>
-                        h4 {
-                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                            text-align: center;
-                            font-weight: bold;
-                            font-weight: 900;
-                            font-style: italic;
-                            margin-left: 100px;
-                            color: white;
-                        }
-                    </style>
-                </div>
-                <!-- <div class="col-4">
-                    <form action="" method="post" autocomplete="off">
-                        <div class="row">
-                            <div class="col-7">
-                                <input type="text" class="form-control" name="tag" id="tag" placeholder="Enter product name" />
-                            </div>
-                            <div class="col-4" align-items="margin-left">
-                                <input type="submit" value="Search" class="form-control btn btn-primary " name="">
-                            </div>
-                    </form>
-                    </div>
-                </div> -->
+        
             </div>
             <br>
-            <br> -->
+            <br> 
 
 
 
@@ -143,22 +116,18 @@
                     </style>
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Contact</th>
-                            <th scope="col">Company name</th>
                             <th scope="col">Message</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for c in user %}
                         <tr>
-                            <td>{{ c.id }}</td>
                             <td>{{ c.name }}</td>
                             <td>{{ c.email }}</td>
                             <td>{{ c.contact }}</td>
-                            <td>{{ c.company_Name }}</td>
                             <td>{{ c.message }}</td>
                         </tr>
                         {% endfor %}

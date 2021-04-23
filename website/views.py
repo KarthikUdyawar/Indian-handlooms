@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from .models import User ,Contact
+from .models import User ,Contact, Costumer
 from . import db
 import os
 
@@ -111,3 +111,43 @@ def profile():
 def admin():
     feedback = Contact.query.all()
     return render_template("admin.html", user=feedback)
+
+@views.route('/order', methods=['GET','POST'])
+@login_required
+def order():
+    product = User.query.all()
+    if request.method == 'POST' and 'tag' in request.form:
+        tag = request.form["tag"]
+        search = "%{}%".format(tag)
+        pname = User.query.filter(User.product_name.like(search))
+        return render_template('order.html', user=pname, tag=tag)
+    return render_template("order.html", user=product)
+
+@views.route('/order/booking/<cname>', methods=['GET','POST'])
+@login_required
+def booking(cname):
+    if request.method == 'POST':  
+        contact = request.form.get('contact')
+        message = request.form.get('message')
+        
+        if not (contact.isdigit() and len(contact) == 10):                            
+            flash('Contact must be at 10 digits.', category='error')
+        elif len(message) < 3:
+            flash('Message must be at least 3 characters.',category='error')    
+        else:
+            user = Costumer.query.get(current_user.id)
+            user.contact = contact
+            user.message = message
+            user.company_Name = cname
+            # feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+            # db.session.add(feedback)
+            db.session.commit()
+            flash('successfully send!',category='success')
+        
+    return render_template("booking.html", user=current_user)
+
+@views.route('/profile/dashboard/<cname>', methods=['GET','POST'])
+@login_required
+def dashboard(cname):
+    order = Costumer.query.filter_by(company_Name = cname)
+    return render_template("dashboard.html", user=order)
