@@ -30,4 +30,4 @@ class Costumer(db.Model, UserMixin):
     password = db.Column(db.String(150))
     contact = db.Column(db.String(10)) 
     company_Name = db.Column(db.String(100))
-    message = db.Column(db.String(1000))
+    address = db.Column(db.String(1000))

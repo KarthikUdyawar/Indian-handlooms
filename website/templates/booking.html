@@ -30,9 +30,9 @@
             font-size: 20px;
         }
         
-        label {
-            text-transform: uppercase;
-        }
+        /* label {
+            text-transform: uppercase; 
+        } */
         
         h3 {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -41,7 +41,7 @@
             font-style: italic;
             text-align: center;
             font-size: 30px;
-            text-transform: uppercase;
+            /* text-transform: uppercase; */
         }
         
         h5 {
@@ -122,12 +122,8 @@
                     </div>
                 </div>
                 </div>--->
-            <div class="jumbotron color-grey-light mt-70">
-                <div class="d-flex align-items-center h-100">
-                    <div class="container text-center py-5">
-                        <h3 class="mb-0">Buy Product</h3>
-                    </div>
-                </div>
+            <h3 class="mb-0">Buy Product</h3>
+            <br>
             </div>
             <div class="content">
                 <div class="container">
@@ -137,14 +133,18 @@
                                 <form class="mb-5" method="post" id="contactForm" name="contactForm">
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-5">
-                                            <label for="" class="col-form-label">Phone *</label>
-                                            <input type="text" class="form-control" name="contact" id="contact" placeholder="Phone #">
+                                            <label for="" class="col-form-label">Phone</label>
+                                            <input type="text" class="form-control" name="contact" id="contact" placeholder="Phone">
+                                        </div>
+                                        <div class="col-md-6 form-group mb-6">
+                                            <label for="" class="col-form-label">Quantity</label>
+                                            <input type="number" class="form-control" name="contact" id="contact" placeholder="1"value="1" min="1" max="1000" step="1">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group mb-5">
-                                            <label for="message" class="col-form-label">Write quantity and price for product you will pay*</label>
-                                            <textarea class="form-control" name="message" id="message" cols="30" rows="4" placeholder="Write your message"></textarea>
+                                            <label for="address" class="col-form-label">Address</label>
+                                            <textarea class="form-control" name="address" id="address" cols="30" rows="4" placeholder="Write your address"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -152,9 +152,23 @@
                                             <input type="submit" value="Send Message" class="btn btn-primary rounded-0 py-2 px-4">
                                             <span class="submitting"></span>
                                         </div>
-
+                                        <!-- <script src="./src/input-spinner.js"></script>
+                                        <script>
+                                            $("input[type='number']").inputSpinner()
+                                        </script>
+                                        <input type="number" value="1" min="1" max="1000" step="1"/> -->
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-info h-100">
+                                <ul class="list-unstyled">
+                                    <li class="d-flex">
+                                        <span class="wrap-icon icon-room mr-3"></span>
+                                        <span><img alt="content" class="object-cover object-center h-full w-full" style="padding-left: 20px; padding-top: 30px;" src="../../{{user.image[8:]}} " alt="{{user.description}}" width="360" height="480"></span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

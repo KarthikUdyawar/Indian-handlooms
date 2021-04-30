@@ -128,16 +128,16 @@ def order():
 def booking(cname):
     if request.method == 'POST':  
         contact = request.form.get('contact')
-        message = request.form.get('message')
+        address = request.form.get('address')
         
         if not (contact.isdigit() and len(contact) == 10):                            
             flash('Contact must be at 10 digits.', category='error')
-        elif len(message) < 3:
+        elif len(address) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
             user = Costumer.query.get(current_user.id)
             user.contact = contact
-            user.message = message
+            user.address = address
             user.company_Name = cname
             # feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
             # db.session.add(feedback)
