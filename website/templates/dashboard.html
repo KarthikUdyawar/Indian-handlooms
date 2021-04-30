@@ -29,7 +29,7 @@
     }
 </style>
 
-<body style="background-color:rgb(243, 252, 253);">
+<body style="background-color:rgb(145, 178, 182);">
     <header>
         <!-------Navigationbar------>
         <section id="nav-bar">
@@ -54,21 +54,14 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
-                        {% if user.is_authenticated %}
+
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" id="profile" href="/profile">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="logout" href="/logout">Logout</a>
                         </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" id="login" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
-                        </li>
-                        {% endif %}
+
                     </ul>
                 </div>
 
@@ -77,7 +70,8 @@
         </section>
         <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
         <br><br>
-        <h3>Dashboard</h3>
+        <h3>Dashboard</h3><br><br>
+        <h5 style="padding-left:130px; font-size: 25px; font-family: bold; font-weight: 600;text-transform: uppercase;">Interested Buyer Details -</h5>
         <style>
             h3 {
                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -89,51 +83,58 @@
                 font-size: 35px;
             }
         </style>
-        <br>
-        
-            </div>
-            <br>
-            <br> 
+
+        </div>
 
 
 
-            <div class="container">
-                <table class="table">
-                    <style>
-                        table,
-                        th,
-                        td,
-                        thead {
-                            text-align: center;
-                            border: 3px solid black;
-                            font-family: 'Times New Roman', Times, serif;
-                            background-color: rgb(248, 250, 246);
-                            font-size: large;
-                            font-weight: 900;
-                            font-style: italic;
-                            border-collapse: collapse;
-                        }
-                    </style>
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for c in user %}
-                        <tr>
-                            <td>{{ c.name }}</td>
-                            <td>{{ c.email }}</td>
-                            <td>{{ c.contact }}</td>
-                            <td>{{ c.message }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+
+        <div class="container">
+            <table class="table">
+                <style>
+                    table,
+                    th,
+                    td,
+                    thead,
+                    select {
+                        text-align: center;
+                        font-family: 'Times New Roman', Times, serif;
+                        background-color: rgb(248, 250, 246);
+                        font-size: large;
+                        font-weight: 900;
+                        font-style: italic;
+                        border-collapse: collapse;
+                    }
+                </style>
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in user %}
+                    <tr>
+                        <td>{{ c.name }}</td>
+                        <td>{{ c.id }}</td>
+                        <td>{{ c.email }}</td>
+                        <td><select id="status" style="border: white;" name="status"> 
+                            <option value="none">Select Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="accepted">Accepted</option>
+                            </select>
+                        </td>
+                        <td>{{ c.contact }}</td>
+                        <td>{{ c.message }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </header>
 </body>
 
