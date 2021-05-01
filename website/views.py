@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from .models import User ,Contact, Costumer
 from . import db
+from sqlalchemy import and_,not_
 import os
 
 views = Blueprint('views',__name__)
@@ -112,42 +113,80 @@ def admin():
     feedback = Contact.query.all()
     return render_template("admin.html", user=feedback)
 
-@views.route('/order', methods=['GET','POST'])
-@login_required
-def order():
+@views.route('/order/<email>', methods=['GET','POST'])
+# @login_required
+def order(email):
     product = User.query.all()
+    cart = Costumer.query.filter_by(email = email)
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
         search = "%{}%".format(tag)
         pname = User.query.filter(User.product_name.like(search))
         return render_template('order.html', user=pname, tag=tag)
-    return render_template("order.html", user=product)
+    return render_template("order.html", user=product, link=cart, c=current_user)
 
-@views.route('/order/booking/<cname>', methods=['GET','POST'])
-@login_required
-def booking(cname):
+@views.route('/order/cart/<name>', methods=['GET','POST'])
+# @login_required
+def cart(name):
+    cart = Costumer.query.filter_by(name = name)
+    if request.method == 'POST': 
+        oid = request.form.get('oid')
+        user = Costumer.query.filter_by(id = oid).first()
+        print(oid)
+        user.status = 'Confirmed'
+        db.session.commit()
+    return render_template("cart.html", user=cart)
+
+@views.route('/order/booking/<cname>/<pname>', methods=['GET','POST'])
+# @login_required
+def booking(cname,pname):
+    book = User.query.filter_by(company_Name = cname)
     if request.method == 'POST':  
         contact = request.form.get('contact')
         address = request.form.get('address')
+        quantity = request.form.get('quantity')
         
         if not (contact.isdigit() and len(contact) == 10):                            
             flash('Contact must be at 10 digits.', category='error')
         elif len(address) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
+            # user = Costumer.query.filter_by(company_Name = cname)
             user = Costumer.query.get(current_user.id)
-            user.contact = contact
-            user.address = address
-            user.company_Name = cname
+            # print('======')
+            # print(current_user)
+            # print('======')
+            # user = db.session.query(Costumer).filter(Costumer.name==cname).first()
+            # user.contact = contact
+            # user.address = address
+            # user.quantity = quantity
+            # user.company_Name = cname
+            # user.product_name = current_user.product_name
+            # new_user = Costumer(contact=contact, address=address,company_Name=cname,quantity = quantity)
+            # new_user = Costumer(contact=contact, address=address,company_Name=cname,quantity = quantity)
+            # db.session.add(new_user)
+            new_user = Costumer(email=user.email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
+            db.session.add(new_user)
             # feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
             # db.session.add(feedback)
             db.session.commit()
+            
+            
+            
             flash('successfully send!',category='success')
         
-    return render_template("booking.html", user=current_user)
+    return render_template("booking.html", user=book)
 
 @views.route('/profile/dashboard/<cname>', methods=['GET','POST'])
 @login_required
 def dashboard(cname):
     order = Costumer.query.filter_by(company_Name = cname)
+    if request.method == 'POST':  
+        price = request.form.get('price')
+        oid = request.form.get('oid')
+        user = Costumer.query.filter_by(id = oid).first()
+        user.price = price
+        user.status = 'Accepted'
+        db.session.commit()
+        
     return render_template("dashboard.html", user=order)

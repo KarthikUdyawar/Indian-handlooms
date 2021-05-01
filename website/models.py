@@ -31,3 +31,7 @@ class Costumer(db.Model, UserMixin):
     contact = db.Column(db.String(10)) 
     company_Name = db.Column(db.String(100))
     address = db.Column(db.String(1000))
+    product_name = db.Column(db.String(100))
+    quantity = db.Column(db.Integer)
+    price = db.Column(db.String(100))
+    status = db.Column(db.String(10)) 

@@ -114,7 +114,7 @@ def login():
                 if check_password_hash(user.password, password):
                     flash('Login successfully!',category='success')
                     login_user(user,remember=True)
-                    return redirect(url_for('views.order'))
+                    return redirect(url_for('views.order',email=email))
                 else:
                     flash('Incorrect password',category='error')
             else:
@@ -163,12 +163,12 @@ def sign_up():
             elif len(password1) < 8:
                 flash('Password must be at least 7 characters.',category='error')
             else:
-                new_user = Costumer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', address='None')
+                new_user = Costumer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', address='None',company_Name='None',product_name='None',quantity = 1,price='--',status='order')
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user,remember=True)
                 flash('Account created!.',category='success')
-                return redirect(url_for('views.order'))
+                return redirect(url_for('views.order',email=email))
     return render_template("signUp.html", user=current_user)
 
 @auth.route('/logout')

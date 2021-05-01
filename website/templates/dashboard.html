@@ -86,10 +86,11 @@
 
         </div>
 
-
+        
 
 
         <div class="container">
+            <form method="POST" id="my_form"></form>
             <table class="table">
                 <style>
                     table,
@@ -106,31 +107,48 @@
                         border-collapse: collapse;
                     }
                 </style>
+                
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
                         <th scope="col">Order Id</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Contact</th>
-                        <th scope="col">Message</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Price Edit</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for c in user %}
+                    
                     <tr>
+                        
+                        <!-- <td>{{ c.id }}</td> -->
+                        <td><input type="text" name="oid" class="form-control" id="oid" placeholder="{{ c.id }}" form="my_form" value="{{ c.id }}" /></td>
                         <td>{{ c.name }}</td>
-                        <td>{{ c.id }}</td>
                         <td>{{ c.email }}</td>
-                        <td><select id="status" style="border: white;" name="status"> 
-                            <option value="none">Select Status</option>
-                            <option value="pending">Pending</option>
-                            <option value="accepted">Accepted</option>
-                            </select>
-                        </td>
+                        <td>{{ c.product_name }}</td>
+                        <td>{{ c.quantity }}</td>
                         <td>{{ c.contact }}</td>
-                        <td>{{ c.message }}</td>
+                        <td>{{ c.address }}</td>
+                        <td><input type="text" name="price" class="form-control" id="price" placeholder="{{ c.price }}" form="my_form" value="{{ c.price }}"/></td>
+                        <!-- <td><input type="text" name="price" class="form-control" id="price" placeholder="{{ c.price }}" form="my_form" /></td> -->
+                        <!-- <td><select id="status" style="border: white;" name="status"> 
+                            <option value="none">Order</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="confirmed">Confirmed</option>
+                            </select>
+                        </td> -->
+                        <td>{{ c.status }}</td>
+                        
+                        <td><button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Edit<br></td>
+                        
                     </tr>
+                    
                     {% endfor %}
                 </tbody>
             </table>

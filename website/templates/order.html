@@ -129,6 +129,7 @@
                         }
                     </style>
                 </div>
+
                 <div class="col-4">
                     <form action="" method="post" autocomplete="off">
                         <div class="row">
@@ -139,9 +140,12 @@
                                 <input type="submit" value="Search" class="form-control btn btn-primary " name="">
                             </div>
                     </form>
-                    </form>
                     </div>
                 </div>
+                <!-- ! Here -->
+                
+                <br><button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;"{% for l in link %} href= "/order/cart/{{l.name}}" {% endfor %} >Cart</a><br>
+                    
             </div>
             <br>
             <BR> {% for c in user %}
@@ -167,7 +171,7 @@
                 <div class="row g-0">
                     <div class="col-md-4">
 
-                        <img style="max-width: 250PX; padding-left: 100PX;" src="{{c.image[8:]}}" alt="{{c.description}}">
+                        <img style="max-width: 250PX; padding-left: 100PX;" src="../{{c.image[8:]}}" alt="{{c.description}}">
                     </div>
                     <div class="col-md-4" style="padding-left: 40px;">
                         <div class="row">
@@ -177,7 +181,7 @@
                         </div><br>
                         <div class="row">
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/order/booking/{{c.company_Name}}">Buy</a><br>
+                                <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/order/booking/{{c.company_Name}}/{{c.product_name}}">Buy</a><br>
                             </div>
                         </div>
                     </div>

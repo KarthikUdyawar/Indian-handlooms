@@ -127,10 +127,14 @@
             </div>
             <div class="content">
                 <div class="container">
+                    {%for u in user%}
                     <div class="row align-items-stretch no-gutters contact-wrap">
                         <div class="col-md-8">
                             <div class="form h-100">
                                 <form class="mb-5" method="post" id="contactForm" name="contactForm">
+                                    <div class="row">
+                                        <label for="" class="col-form-label">{{u.product_name}}</label>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-5">
                                             <label for="" class="col-form-label">Phone</label>
@@ -138,7 +142,7 @@
                                         </div>
                                         <div class="col-md-6 form-group mb-6">
                                             <label for="" class="col-form-label">Quantity</label>
-                                            <input type="number" class="form-control" name="contact" id="contact" placeholder="1"value="1" min="1" max="1000" step="1">
+                                            <input type="number" class="form-control" name="quantity" id="quantity" placeholder="1"value="1" min="1" max="1000" step="1">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -166,12 +170,13 @@
                                 <ul class="list-unstyled">
                                     <li class="d-flex">
                                         <span class="wrap-icon icon-room mr-3"></span>
-                                        <span><img alt="content" class="object-cover object-center h-full w-full" style="padding-left: 20px; padding-top: 30px;" src="../../{{user.image[8:]}} " alt="{{user.description}}" width="360" height="480"></span>
+                                        <span><img alt="content" class="object-cover object-center h-full w-full" style="padding-left: 20px; padding-top: 30px;" src="../../../{{u.image[8:]}} " alt="{{u.description}}" width="360" height="480"></span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    {%endfor%}
                 </div>
             </div>
 
