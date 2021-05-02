@@ -125,7 +125,7 @@ def order(email):
         search = "%{}%".format(tag)
         pname = User.query.filter(User.product_name.like(search))
         return render_template('order.html', user=pname, tag=tag)
-    return render_template("order.html", user=product, link=cart, c=current_user)
+    return render_template("order.html", user=product, link=cart, email=email)
 
 @views.route('/order/cart/<name>', methods=['GET','POST'])
 # @login_required
@@ -135,17 +135,20 @@ def cart(name):
     # print(cart)
     if request.method == 'POST': 
         oid = request.form.get('oid')
+        user = Costumer.query.get(oid)
         if len(oid) < 1:
-            flash('Please enter the order id.',category='error')    
+            flash('Please enter the order id.',category='error')
+        elif user.status == 'order':
+            flash('Please wait for weaver responce',category='error')
         else:
             user = Costumer.query.filter_by(id = oid).first()
             user.status = 'Confirmed'
             db.session.commit()
     return render_template("cart.html", user=cart)
 
-@views.route('/order/booking/<cname>/<pname>', methods=['GET','POST'])
+@views.route('/order/<email>/booking/<cname>/<pname>', methods=['GET','POST'])
 # @login_required
-def booking(cname,pname):
+def booking(email,cname,pname):
     book = User.query.filter_by(company_Name = cname)
     if request.method == 'POST':  
         contact = request.form.get('contact')
@@ -181,7 +184,7 @@ def booking(cname,pname):
             
             flash('successfully send!',category='success')
         
-    return render_template("booking.html", user=book)
+    return render_template("booking.html", user=book, email=email)
 
 @views.route('/profile/dashboard/<cname>', methods=['GET','POST'])
 @login_required
