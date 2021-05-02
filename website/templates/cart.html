@@ -120,12 +120,26 @@
                 </div> -->
             </div>
             <br>
-            <br> -->
+            <br> 
+
 
 
 
             <div class="container">
-                <form method="POST" id="my_form"></form>
+                <form method="POST" id="my_form" class="row row-cols-lg-auto g-3 align-items-center">
+                    <div class="col-sm-2" style="font-weight: bold;">
+                        <label for="oid" class="col-sm-2 col-form-label">Order ID: </label>
+                    </div>
+                    <div class="col-sm-2" style="font-weight: bold;">
+                        
+                        <input type="text" name="oid" class="form-control" id="oid" placeholder="" form="my_form"  />
+                    </div>
+                    <div class="col-sm-2" style="padding-left: 250px;">
+                        <button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Confirmed</button>
+                    </div> 
+                </form>
+
+                </form>
                 <table class="table">
                     <style>
                         table,
@@ -149,18 +163,19 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Edit</th>
+                            <!-- <th scope="col">Edit</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         {% for c in user %}
                         <tr>
-                            <td><input type="text" name="oid" class="form-control" id="oid" placeholder="{{ c.id }}" form="my_form" value="{{ c.id }}" /></td>
+                            <!-- <td><input type="text" name="oid" class="form-control" id="oid" placeholder="{{ c.id }}" form="my_form" value="{{ c.id }}" /></td> -->
+                            <td>{{ c.id }}</td>
                             <td>{{ c.product_name }}</td>
                             <td>{{ c.quantity }}</td>
                             <td>{{ c.price }}</td>
                             <td>{{ c.status }}</td>
-                            <td><button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Edit<br></td>
+                            <!-- <td><button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Edit<br></td> -->
                         </tr>
                         {% endfor %}
                     </tbody>
