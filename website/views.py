@@ -127,11 +127,11 @@ def order(email):
         return render_template('order.html', user=pname, tag=tag)
     return render_template("order.html", user=product, link=cart, email=email)
 
-@views.route('/order/cart/<name>', methods=['GET','POST'])
+@views.route('/order/cart/<email>', methods=['GET','POST'])
 # @login_required
-def cart(name):
+def cart(email):
     # cart = Costumer.query.filter_by(name = name)
-    cart = Costumer.query.filter(and_(not_(Costumer.product_name == 'None'),(Costumer.name == name)))
+    cart = Costumer.query.filter(and_(not_(Costumer.product_name == 'None'),(Costumer.email == email)))
     # print(cart)
     if request.method == 'POST': 
         oid = request.form.get('oid')
@@ -146,9 +146,9 @@ def cart(name):
             db.session.commit()
     return render_template("cart.html", user=cart)
 
-@views.route('/order/<email>/booking/<cname>/<pname>', methods=['GET','POST'])
+@views.route('/order/<email>/booking/<cname>/<pname>/<oid>', methods=['GET','POST'])
 # @login_required
-def booking(email,cname,pname):
+def booking(email,cname,pname,oid):
     book = User.query.filter_by(company_Name = cname)
     if request.method == 'POST':  
         contact = request.form.get('contact')
@@ -160,8 +160,12 @@ def booking(email,cname,pname):
         elif len(address) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
-            # user = Costumer.query.filter_by(company_Name = cname)
-            user = Costumer.query.get(current_user.id)
+            # user = Costumer.query.filter_by(id = oid).first()
+            user = Costumer.query.filter(and_(not_(Costumer.id == oid),(Costumer.email == email))).first()
+            # user = Costumer.query.get(current_user.id)
+            print('======')
+            print(user)
+            print('======')
             # print('======')
             # print(current_user)
             # print('======')
@@ -174,7 +178,7 @@ def booking(email,cname,pname):
             # new_user = Costumer(contact=contact, address=address,company_Name=cname,quantity = quantity)
             # new_user = Costumer(contact=contact, address=address,company_Name=cname,quantity = quantity)
             # db.session.add(new_user)
-            new_user = Costumer(email=user.email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
+            new_user = Costumer(email=email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
             db.session.add(new_user)
             # feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
             # db.session.add(feedback)

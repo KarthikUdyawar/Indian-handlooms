@@ -144,7 +144,7 @@
                 </div>
                 <!-- ! Here -->
                 
-                <br><button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;"{% for l in link %} href= "/order/cart/{{l.name}}" {% endfor %} >Cart</a><br>
+                <br><button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;"{% for l in link %} href= "/order/cart/{{l.email}}" {% endfor %} >Cart</a><br>
                     
             </div>
             <br>
@@ -181,7 +181,7 @@
                         </div><br>
                         <div class="row">
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/order/{{email}}/booking/{{c.company_Name}}/{{c.product_name}}">Buy</a><br>
+                                <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/order/{{email}}/booking/{{c.company_Name}}/{{c.product_name}}/{{c.id}}">Buy</a><br>
                             </div>
                         </div>
                     </div>
