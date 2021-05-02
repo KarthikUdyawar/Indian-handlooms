@@ -118,6 +118,8 @@ def admin():
 def order(email):
     product = User.query.all()
     cart = Costumer.query.filter_by(email = email)
+    # cart = Costumer.query.filter(and_(Costumer.query.filter_by(email = email),Costumer.query.filter(Costumer.product_name.isnot(None))))
+    # print(cart)
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
         search = "%{}%".format(tag)
@@ -128,13 +130,17 @@ def order(email):
 @views.route('/order/cart/<name>', methods=['GET','POST'])
 # @login_required
 def cart(name):
-    cart = Costumer.query.filter_by(name = name)
+    # cart = Costumer.query.filter_by(name = name)
+    cart = Costumer.query.filter(and_(not_(Costumer.product_name == 'None'),(Costumer.name == name)))
+    # print(cart)
     if request.method == 'POST': 
         oid = request.form.get('oid')
-        user = Costumer.query.filter_by(id = oid).first()
-        print(oid)
-        user.status = 'Confirmed'
-        db.session.commit()
+        if len(oid) < 1:
+            flash('Please enter the order id.',category='error')    
+        else:
+            user = Costumer.query.filter_by(id = oid).first()
+            user.status = 'Confirmed'
+            db.session.commit()
     return render_template("cart.html", user=cart)
 
 @views.route('/order/booking/<cname>/<pname>', methods=['GET','POST'])
@@ -184,9 +190,14 @@ def dashboard(cname):
     if request.method == 'POST':  
         price = request.form.get('price')
         oid = request.form.get('oid')
-        user = Costumer.query.filter_by(id = oid).first()
-        user.price = price
-        user.status = 'Accepted'
-        db.session.commit()
+        if len(oid) < 1:
+            flash('Please enter the order id.',category='error')  
+        elif len(price) < 1:
+            flash('Please enter the price.',category='error')  
+        else:
+            user = Costumer.query.filter_by(id = oid).first()
+            user.price = price
+            user.status = 'Accepted'
+            db.session.commit()
         
     return render_template("dashboard.html", user=order)
