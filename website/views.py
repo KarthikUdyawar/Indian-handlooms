@@ -146,11 +146,23 @@ def cart(email):
             db.session.commit()
     return render_template("cart.html", user=cart)
 
+#not sure abt this function checkout.html
+@views.route('/order/<email>/booking/<cname>/<pname>/<oid>/checkout.html', methods=['GET','POST'])
+def checkout(email,cname,pname,oid):
+    book = User.query.filter_by(company_Name = cname)
+    if request.method == 'POST': 
+
+        oid = request.form.get('oid')
+        user = Costumer.query.get(oid)
+    return render_template("checkout.html", user=book)
+#
+
 @views.route('/order/<email>/booking/<cname>/<pname>/<oid>', methods=['GET','POST'])
 # @login_required
 def booking(email,cname,pname,oid):
     book = User.query.filter_by(company_Name = cname)
-    if request.method == 'POST':  
+    if request.method == 'POST': 
+        print("dddddddddddd")
         contact = request.form.get('contact')
         address = request.form.get('address')
         quantity = request.form.get('quantity')
