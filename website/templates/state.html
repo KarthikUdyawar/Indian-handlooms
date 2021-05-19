@@ -132,21 +132,24 @@
 
 
             <div class="container">
-                {% for u in user %}
+                
                 <div class="row row-cols-3">
-                    <div class="col">
+                    {% for u in user %}
+                    <div class="col" style="margin: auto; padding: 10px;">
                         <div class="card" style="width: 18rem;">
                             <img src="{{u.image[7:]}}" class="card-img-top" alt="{{u.description}}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ u.product_name }}</h5>
                                 <p class="card-text">{{u.company_Name}}</p>
-                                <p class="card-text">{{u.description}}</p>
+                                <p class="card-text">{{' '.join(u.description.split()[:20])}} ...</p>
                                 <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/state/{{u.state}}/info/{{u.id}}">More Info</a>
                             </div>
                         </div>
                     </div>
+                    
+                    {% endfor %} 
                 </div>
-                {% endfor %}
+
             </div>
     </header>
 </body>
