@@ -119,7 +119,10 @@ def login():
                     flash('Incorrect password',category='error')
             else:
                 flash('User does not exist!',category='error')
-            
+    
+    # print("******************************")
+    # print(generate_password_hash('rameshpardeshi1234@gmail.com',method='sha256'))
+    # print("******************************")
     return render_template("login.html", user=current_user)
 
 @auth.route('/sign-up', methods=['GET','POST'])
