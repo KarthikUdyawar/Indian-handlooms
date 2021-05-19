@@ -27,6 +27,10 @@ def allowed_image_filesize(filesize):
 @views.route('/profile', methods=['GET','POST'])
 @login_required
 def profile():
+    order = Costumer.query.filter_by(company_Name = current_user.company_Name)
+    # print(current_user.company_Name)
+    order_count = order.count()
+    # print(order_count)
     if request.method == 'POST':  
         cName = request.form.get('cName')
         firstName = request.form.get('firstName')
@@ -106,7 +110,7 @@ def profile():
         db.session.commit()
         flash('Profile edited!',category='success')
         
-    return render_template("profile.html", user=current_user)
+    return render_template("profile.html", user=current_user, count=order_count)
 
 @views.route('/admin')
 def admin():
@@ -118,14 +122,16 @@ def admin():
 def order(email):
     product = User.query.all()
     cart = Costumer.query.filter_by(email = email)
+    print(email)
+    cart_count = cart.count() - 1
     # cart = Costumer.query.filter(and_(Costumer.query.filter_by(email = email),Costumer.query.filter(Costumer.product_name.isnot(None))))
     # print(cart)
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
         search = "%{}%".format(tag)
         pname = User.query.filter(User.product_name.like(search))
-        return render_template('order.html', user=pname, tag=tag)
-    return render_template("order.html", user=product, link=cart, email=email)
+        return render_template('order.html', user=pname, tag=tag ,cemail=email )
+    return render_template("order.html", user=product, link=cart, cemail=email, count = cart_count)
 
 @views.route('/order/cart/<email>', methods=['GET','POST'])
 # @login_required
@@ -146,23 +152,11 @@ def cart(email):
             db.session.commit()
     return render_template("cart.html", user=cart)
 
-#not sure abt this function checkout.html
-@views.route('/order/<email>/booking/<cname>/<pname>/<oid>/checkout.html', methods=['GET','POST'])
-def checkout(email,cname,pname,oid):
-    book = User.query.filter_by(company_Name = cname)
-    if request.method == 'POST': 
-
-        oid = request.form.get('oid')
-        user = Costumer.query.get(oid)
-    return render_template("checkout.html", user=book)
-#
-
 @views.route('/order/<email>/booking/<cname>/<pname>/<oid>', methods=['GET','POST'])
 # @login_required
 def booking(email,cname,pname,oid):
     book = User.query.filter_by(company_Name = cname)
-    if request.method == 'POST': 
-        print("dddddddddddd")
+    if request.method == 'POST':  
         contact = request.form.get('contact')
         address = request.form.get('address')
         quantity = request.form.get('quantity')
@@ -206,6 +200,7 @@ def booking(email,cname,pname,oid):
 @login_required
 def dashboard(cname):
     order = Costumer.query.filter_by(company_Name = cname)
+    order_count = order.count()
     if request.method == 'POST':  
         price = request.form.get('price')
         oid = request.form.get('oid')
@@ -219,4 +214,4 @@ def dashboard(cname):
             user.status = 'Accepted'
             db.session.commit()
         
-    return render_template("dashboard.html", user=order)
+    return render_template("dashboard.html", user=order, count=order_count)
