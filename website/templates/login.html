@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="\static\images\icon\logo1.png">
-    
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/loginstyle.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,7 +29,10 @@
         <!-------Navigationbar------>
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="#" style="color: white;">India's Handloom Products</a>
+                <a class="navbar-brand" href="/" style="color: white;">
+                    <img src="\static\images\icon\logo1.png" alt="" width="60" height="60">
+                    India Handlooms
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,32 +72,26 @@
 
             </nav>
 
-        <!-- message flash -->
-        {% with messages = get_flashed_messages(with_categories = true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                {% if category == 'error' %}
-                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert">
+            <!-- message flash -->
+            {% with messages = get_flashed_messages(with_categories = true) %} {% if messages %} {% for category, message in messages %} {% if category == 'error' %}
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                {% else %}
-                    <div class="alert alert-success alert-dismissable fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert">
+            </div>
+            {% else %}
+            <div class="alert alert-success alert-dismissable fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                {% endif%}
-            {% endfor%}
-        {% endif %}
-    {% endwith %}
+            </div>
+            {% endif%} {% endfor%} {% endif %} {% endwith %}
 
         </section>
 
-        
+
 
         <div class="main">
             <section class="login">
@@ -111,16 +108,16 @@
                                 <input type="password" class="form-input" name="password" id="password" placeholder="Password" />
                             </div>
 
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline" style="padding-left: 150px;">
                                 <input class="form-check-input" type="radio" name="role" id="role" value="costumer">
-                                <label class="form-check-label" for="inlineRadio2">Costumer</label>
+                                <label class="form-check-label" for="inlineRadio2">Customer</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline " style="padding-left: 50px;">
                                 <input class="form-check-input" type="radio" name="role" id="role" value="weavers">
                                 <label class="form-check-label" for="inlineRadio1">Weavers</label>
                             </div>
-                            
                             <div class="form-group">
+                                <br>
                                 <input type="submit" name="submit" id="submit" class="form-submit" value="Log In" />
                             </div>
                         </form>
@@ -129,8 +126,8 @@
             </section>
         </div>
 
-        
-    
+
+
 
         <script src="static/javascript/main.js"></script>
 
@@ -145,9 +142,9 @@
 
             gtag('config', 'UA-23581568-13');
         </script>
-    
-</header>
-    
+
+    </header>
+
 </body>
 
 </html>

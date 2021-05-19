@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="\static\images\icon\logo1.png">
-    
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/aboutstyle.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -117,164 +117,161 @@
 </head>
 
 <body>
-        <!-------Navigationbar------>
-        <section id="nav-bar">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="#" style="color: white;">India's Handloom Products</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-------Navigationbar------>
+    <section id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/" style="color: white;">
+                <img src="\static\images\icon\logo1.png" alt="" width="60" height="60">
+                India Handlooms
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon" style="color: white; "></span>
             </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" id="Home" href="/">HOME</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="about" href="/about">ABOUT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="database" href="/database">WEAVERS DATABASE</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="contact" href="/contact">CONTACT US</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" id="profile" href="/profile">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="logout" href="/logout">Logout</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" id="login" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-
-            </nav>
-        </section>
-
-
-        <div class="slideshow-container">
-
-            <div class="mySlides fade" style="margin-left:350px; ">
-                <img src="../static/images/img/abt1.jpg" style="width:150%;height:70%">
-                <div class="text">ABOUT US</div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" id="Home" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="about" href="/about">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="database" href="/database">WEAVERS DATABASE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact" href="/contact">CONTACT US</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" id="profile" href="/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="login" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
 
-            <div class="mySlides fade" style="margin-left:350px;">
-                <img src="../static/images/img/abt2.jpg" style="width:150%;height:70%">
-                <div class="text" display:flex>ABOUT US</div>
-            </div>
+        </nav>
+    </section>
 
-            <div class="mySlides fade" style="margin-left:350px;">
-                <img src="../static/images/img/abt3.jpg" style="width:150%;height:70%">
-                <div class="text">ABOUT US</div>
-            </div>
 
+    <div class="slideshow-container">
+
+        <div class="mySlides fade" style="margin-left:350px; ">
+            <img src="../static/images/img/abt1.jpg" style="width:150%;height:70%">
+            <div class="text">ABOUT US</div>
         </div>
 
-        <div style="text-align:center">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <div class="mySlides fade" style="margin-left:350px;">
+            <img src="../static/images/img/abt2.jpg" style="width:150%;height:70%">
+            <div class="text" display:flex>ABOUT US</div>
         </div>
 
-        <script>
-            var slideIndex = 0;
-            showSlides();
+        <div class="mySlides fade" style="margin-left:350px;">
+            <img src="../static/images/img/abt3.jpg" style="width:150%;height:70%">
+            <div class="text">ABOUT US</div>
+        </div>
 
-            function showSlides() {
-                var i;
-                var slides = document.getElementsByClassName("mySlides");
-                var dots = document.getElementsByClassName("dot");
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                slideIndex++;
-                if (slideIndex > slides.length) {
-                    slideIndex = 1
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " active";
-                setTimeout(showSlides, 2000); // Change image every 2 seconds
+    </div>
+
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-        </script>
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
-                <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
-                    <i class="fa fa-remove"></i>
-                </a>
-                <h4 style="text-align: center; " class="w3-bar-item"><b>Handloom sector</b></h4><br>
-                <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/east"><u>Eastern India</a><br>
-                <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/west">Western India</a><br>
-                <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/north">Northern India</a><br>
-                <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="northeast">North-Eastern India</a><br>
-                <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/central">Central India</a><br>
-                <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/south">Southern India</u></a></a>
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <h4 style="text-align: center; " class="w3-bar-item"><b>Handloom sector</b></h4><br>
+            <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/east"><u>Eastern India</a><br>
+            <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/west">Western India</a><br>
+            <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/north">Northern India</a><br>
+            <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="northeast">North-Eastern India</a><br>
+            <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/central">Central India</a><br>
+            <a style="text-align: center; " class="w3-bar-item w3-button w3-hover-black" href="/south">Southern India</u></a></a>
 
-            </nav>
-        </div>
+        </nav>
+    </div>
 
-        <!-- Overlay effect when opening sidebar on small screens -->
-        <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-        <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
-        <div class="w3-main" style="margin-left:250px">
-            <br>
+    <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+    <div class="w3-main" style="margin-left:250px">
+        <br>
+        <div>
             <div>
-                <div>
-                    <h1 class="w3-text-teal" style="margin-left: 450px;">HANDLOOMS IN INDIA</h1>
-                    <hr style="margin-left: 220px;margin-right:150px;;color: rgb(36, 226, 226);">
-                    <p style=" margin-left: 130px; font-size: 20px;
-                    margin-right:100px; text-align: justify;justify-content: center;padding-bottom: 30px;">Handloom products in India are finely woven texture, where the exchange of structure and example, theme, weaving and painting or other compatible changes and blends, makes every item novel, everything as particular as the following.
-                        So what is the handloom weave? A handloom is a straightforward machine utilized for weaving.The types of Handloom products include handloom decorative, handloom fabric, handloom saree, handloom textiles, cotton clothes and more.<br><br>The
-                        diversity and variation of weaving techniques styles and designs have innumerable art forms and school of practise which make it fairly Complex industry.We bring together an in-depth understanding and comprehensive overview of
-                        each of the platforms and leverage our expertise to cater to the precise needs and requirements of the clients.<br><br>While the Indian Handloom industry is a highly fragmented and unorganised sector, there are about 5 million
-                        recorded weavers in this market of which more than 95% are terminal Weavers. This makes the ecosystem fairly Complex and challenging for someone who wishes to manufacture or procure the right kind of textile at the right price.
-                        We bring to table an end-to-end expertise across the entire Handloom value chain, thereby offering a simplified interface between our clients and the vast population of Weavers and artisans.<br><br>We help our clients achieve all
-                        of those while enabling them to become more sustainable and responsible and nimble in terms of their operations since consumers are becoming more conscious of the brand that they choose are adopting the norms and protocols of Sustainable
-                        fashion. Hence we must offer the right kind of solutions to our clients to help them become carbon positive. </p>
-                </div>
+                <h1 class="w3-text-teal" style="margin-left: 470px;">HANDLOOMS IN INDIA</h1>
+                <hr style="margin-left: 220px;margin-right:150px;;color: rgb(36, 226, 226);">
+                <p style=" margin-left: 130px; font-size: 20px;
+                    margin-right:100px; text-align: justify;justify-content: center;padding-bottom: 30px;">Handloom products in India are finely woven texture, where the exchange of structure and example, theme, weaving and painting or other compatible changes and blends, makes every item novel, everything as particular as the following. The diversity and variation of weaving techniques styles and designs have innumerable art forms and school of practice which make it a fairly Complex industry. We bring together an in-depth understanding and comprehensive overview of each of the platforms and leverage our expertise to cater to the precise needs and requirements of the clients.
+                    This makes the ecosystem fairly Complex and challenging for someone who wishes to manufacture or procure the right kind of textile at the right price. We bring to the table end-to-end expertise across the entire Handloom value chain, thereby offering a simplified interface between our clients and the vast population of Weavers and artisans.</p>
             </div>
-            <!-- END MAIN -->
         </div>
+        <!-- END MAIN -->
+    </div>
 
-        <script>
-            // Get the Sidebar
-            var mySidebar = document.getElementById("mySidebar ");
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar ");
 
-            // Get the DIV with overlay effect
-            var overlayBg = document.getElementById("myOverlay ");
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay ");
 
-            // Toggle between showing and hiding the sidebar, and add overlay effect
-            function w3_open() {
-                if (mySidebar.style.display === 'block') {
-                    mySidebar.style.display = 'none';
-                    overlayBg.style.display = "none ";
-                } else {
-                    mySidebar.style.display = 'block';
-                    overlayBg.style.display = "block ";
-                }
-            }
-
-            // Close the sidebar with the close button
-            function w3_close() {
-                mySidebar.style.display = "none ";
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
                 overlayBg.style.display = "none ";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block ";
             }
-        </script>
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none ";
+            overlayBg.style.display = "none ";
+        }
+    </script>
 
 </body>
 
