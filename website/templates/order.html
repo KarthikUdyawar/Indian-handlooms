@@ -18,6 +18,8 @@
 
 </head>
 
+
+{% block content %}
 <style>
     body {
         background-color: rgb(208, 224, 243);
@@ -30,7 +32,10 @@
         <!-------Navigationbar------>
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="#" style="color: white;">India's Handloom Products</a>
+                <a class="navbar-brand" href="/" style="color: white;">
+                    <img src="\static\images\icon\logo1.png" alt="" width="60" height="60">
+                    India Handlooms
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -128,78 +133,58 @@
                     </style>
                 </div>
 
-                <div class="col-4">
+                <div class="container">
                     <form action="" method="post" autocomplete="off">
                         <div class="row">
-                            <div class="col-7">
+                            <div class="col-3">
                                 <input type="text" class="form-control" name="tag" id="tag" placeholder="Enter product name" />
                             </div>
-                            <div class="col-4" align-items="margin-left">
+                            <div class="col-3" align-items="margin-left">
                                 <input type="submit" value="Search" class="form-control btn btn-primary " name="">
                             </div>
+                            <div class="col-5" align-items="margin-right" style="padding-left: 300px;">
+                                <button type="button" class="form-control btn btn-primary "><a style="color: white;"{% for l in link %} href= "/order/cart/{{l.email}}" {% endfor %} >Cart<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{{count}}</span>
+                                </button></a>
+                            </div>
+                        </div>
                     </form>
-                    </div>
                 </div>
                 <!-- ! Here -->
                 
-                <br><button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;"{% for l in link %} href= "/order/cart/{{l.email}}" {% endfor %} >Cart</a><br>
+                
                     
             </div>
             <br>
-            <BR> {% for c in user %}
-            <div class="row g-0">
-                <div class="col-md-4" style="color: black; padding-left: 115px; font-size: 25px;font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-                    <label class="card-title">Name of Product -</label>
-                </div>
-                <div class="col-md-4" style="color: black; font-size: 25px;font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-                    <label class="card-title">Company Name -</label>
-                </div>
-            </div>
-            <div>
-                <div class="row" style="font-size: 20px;">
-                    <div class="col-md-4">
-                        <h5 STYLE="padding-left: 100PX;" class="card-title">{{ c.product_name }}</h5>
-                    </div>
-                    <div class="col-md-4" style="padding-left: 15px;">
-
-                        <h5 class="card-text">{{c.company_Name}}</h5>
-                    </div>
-                </div>
-                <BR>
-                <div class="row g-0">
-                    <div class="col-md-4">
-
-                        <img style="max-width: 250PX; padding-left: 100PX;" src="../{{c.image[8:]}}" alt="{{c.description}}">
-                    </div>
-                    <div class="col-md-4" style="padding-left: 40px;">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <br><button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/state/{{c.state}}/info/{{c.id}}">More Info</a><br>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);"><a style="color: white;" href="/order/{{email}}/booking/{{c.company_Name}}/{{c.product_name}}/{{c.id}}">Buy</a><br>
+            <div class="container">
+                
+                <div class="row row-cols-4">
+                    {% for u in user %}
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{u.image[7:]}}" class="card-img-top" alt="{{u.description}}" height="200">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ u.product_name }}</h5>
+                                <p class="card-text">{{u.company_Name}}</p>
+                                <p class="card-text" >{{' '.join(u.description.split()[:20])}} ...</p>
+                                <!-- <a href="/state/{{title}}/info/{{u.id}}">Info</a> -->
+                                <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244); margin:5px;"><a style="color: white;" href="/state/{{u.state}}/info/{{u.id}}">More Info</a>
+                                    <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);  margin:5px;"><a style="color: white;" href="/order/{{cemail}}/booking/{{u.company_Name}}/{{u.product_name}}/{{u.id}}">Buy</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                   
-                </div><br>
-                <div class="row g-0">
-                    <div class="col-md-4" style="color: black; padding-left: 115px; font-size: 25px;font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-                        <label class="card-title">Description -</label>
-                    </div>
+                    {% endfor %}
                 </div>
-
-                <div class="row g-0">
-                    <div style=" text-align:justify; padding-left:110px; padding-right: 300px;">
-                        <p>{{c.description}}</p>
-                    </div>
-                </div>
-                <hr></div>
                 
-            </div><br> {% endfor %}
+            </div>
+            <script>
+                function string(array){
+                    return array.ToString();
+                }
+            </script>
     </header>
 </body>
 
 </html>
+{% endblock %}
