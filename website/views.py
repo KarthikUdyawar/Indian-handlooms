@@ -120,9 +120,12 @@ def admin():
 @views.route('/order/<email>', methods=['GET','POST'])
 # @login_required
 def order(email):
+    # page = request.args.get("page",1,type=int)
+    # product = User.query.filter_by().paginate(page=page, per_page=3)
     product = User.query.all()
+    # print(type(product))
     cart = Costumer.query.filter_by(email = email)
-    print(email)
+    # print(email)
     cart_count = cart.count() - 1
     # cart = Costumer.query.filter(and_(Costumer.query.filter_by(email = email),Costumer.query.filter(Costumer.product_name.isnot(None))))
     # print(cart)
