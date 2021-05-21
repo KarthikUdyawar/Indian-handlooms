@@ -28,9 +28,7 @@ def allowed_image_filesize(filesize):
 @login_required
 def profile():
     order = Costumer.query.filter_by(company_Name = current_user.company_Name)
-    # print(current_user.company_Name)
     order_count = order.count()
-    # print(order_count)
     if request.method == 'POST':  
         cName = request.form.get('cName')
         firstName = request.form.get('firstName')
@@ -120,17 +118,10 @@ def admin():
     return render_template("admin.html", feedback=feedback, order=order, user=weavers)
 
 @views.route('/order/<email>', methods=['GET','POST'])
-# @login_required
 def order(email):
-    # page = request.args.get("page",1,type=int)
-    # product = User.query.filter_by().paginate(page=page, per_page=3)
     product = User.query.all()
-    # print(type(product))
     cart = Costumer.query.filter_by(email = email)
-    # print(email)
     cart_count = cart.count() - 1
-    # cart = Costumer.query.filter(and_(Costumer.query.filter_by(email = email),Costumer.query.filter(Costumer.product_name.isnot(None))))
-    # print(cart)
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
         search = "%{}%".format(tag)
@@ -139,11 +130,8 @@ def order(email):
     return render_template("order.html", user=product, link=cart, cemail=email, count = cart_count)
 
 @views.route('/order/cart/<email>', methods=['GET','POST'])
-# @login_required
 def cart(email):
-    # cart = Costumer.query.filter_by(name = name)
     cart = Costumer.query.filter(and_(not_(Costumer.product_name == 'None'),(Costumer.email == email)))
-    # print(cart)
     if request.method == 'POST': 
         oid = request.form.get('oid')
         user = Costumer.query.get(oid)
@@ -158,7 +146,6 @@ def cart(email):
     return render_template("cart.html", user=cart)
 
 @views.route('/order/<email>/booking/<cname>/<pname>/<oid>', methods=['GET','POST'])
-# @login_required
 def booking(email,cname,pname,oid):
     book = User.query.filter_by(company_Name = cname)
     if request.method == 'POST':  
@@ -171,32 +158,10 @@ def booking(email,cname,pname,oid):
         elif len(address) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
-            # user = Costumer.query.filter_by(id = oid).first()
             user = Costumer.query.filter(and_(not_(Costumer.id == oid),(Costumer.email == email))).first()
-            # user = Costumer.query.get(current_user.id)
-            print('======')
-            print(user)
-            print('======')
-            # print('======')
-            # print(current_user)
-            # print('======')
-            # user = db.session.query(Costumer).filter(Costumer.name==cname).first()
-            # user.contact = contact
-            # user.address = address
-            # user.quantity = quantity
-            # user.company_Name = cname
-            # user.product_name = current_user.product_name
-            # new_user = Costumer(contact=contact, address=address,company_Name=cname,quantity = quantity)
-            # new_user = Costumer(contact=contact, address=address,company_Name=cname,quantity = quantity)
-            # db.session.add(new_user)
             new_user = Costumer(email=email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
             db.session.add(new_user)
-            # feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
-            # db.session.add(feedback)
             db.session.commit()
-            
-            
-            
             flash('successfully send!',category='success')
         
     return render_template("booking.html", user=book, email=email)
