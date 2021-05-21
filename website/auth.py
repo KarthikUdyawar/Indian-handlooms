@@ -7,10 +7,6 @@ from sqlalchemy import and_
 
 auth = Blueprint('auth',__name__)
 
-# @auth.route('/')
-# def home():
-#     return render_template("home.html", user=current_user)
-
 @auth.route('/about')
 def about():
     return render_template("about.html", user=current_user)
@@ -49,7 +45,7 @@ def contact():
         name = request.form.get('name')
         email = request.form.get('email')
         contact = request.form.get('contact')
-        cName = request.form.get('cName')
+        role = request.form.get('role')
         message = request.form.get('message')
         
         if len(name) < 3:
@@ -58,12 +54,10 @@ def contact():
             flash('Email must be at least 3 characters.',category='error')
         elif not (contact.isdigit() and len(contact) == 10):                            
             flash('Contact must be at 10 digits.', category='error')
-        elif len(cName) < 3:
-            flash('Company name must be at least 3 characters.',category='error')
         elif len(message) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
-            feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+            feedback = Contact(name=name, email=email, contact=contact, role=role, message=message)
             db.session.add(feedback)
             db.session.commit()
             flash('Feedback successfully send!',category='success')
@@ -119,10 +113,6 @@ def login():
                     flash('Incorrect password',category='error')
             else:
                 flash('User does not exist!',category='error')
-    
-    # print("******************************")
-    # print(generate_password_hash('rameshpardeshi1234@gmail.com',method='sha256'))
-    # print("******************************")
     return render_template("login.html", user=current_user)
 
 @auth.route('/sign-up', methods=['GET','POST'])

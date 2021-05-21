@@ -30,6 +30,49 @@
 </style>
 
 <body style="background-color:rgb(243, 252, 253);">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">⮝</button>
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        #myBtn:hover {
+            background-color: rgb(0, 132, 255);
+        }
+    </style>
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+        
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+            }  else {
+            mybutton.style.display = "none";
+            }
+        }
+        
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
     <header>
         <!-------Navigationbar------>
         <section id="nav-bar">
@@ -93,7 +136,7 @@
             {% endif%} {% endfor%} {% endif %} {% endwith %}
 
         </section>
-        <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
+
         <br><br>
         <h3>Cart</h3>
         <style>
@@ -108,34 +151,7 @@
             }
         </style>
         <br>
-        <!-- <div class="search">
-            <div class="row">
-                <div>
-                    <h4>Search For : {{ tag}}</h4>
-                    <style>
-                        h4 {
-                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                            text-align: center;
-                            font-weight: bold;
-                            font-weight: 900;
-                            font-style: italic;
-                            margin-left: 100px;
-                            color: white;
-                        }
-                    </style>
-                </div>
-                <!-- <div class="col-4">
-                    <form action="" method="post" autocomplete="off">
-                        <div class="row">
-                            <div class="col-7">
-                                <input type="text" class="form-control" name="tag" id="tag" placeholder="Enter product name" />
-                            </div>
-                            <div class="col-4" align-items="margin-left">
-                                <input type="submit" value="Search" class="form-control btn btn-primary " name="">
-                            </div>
-                    </form>
-                    </div>
-                </div> -->
+        
             </div>
             <div class="container">
                 <form method="POST" id="my_form" class="row row-cols-lg-auto g-3 align-items-center">
@@ -174,19 +190,16 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
                             <th scope="col">Status</th>
-                            <!-- <th scope="col">Edit</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         {% for c in user %}
                         <tr>
-                            <!-- <td><input type="text" name="oid" class="form-control" id="oid" placeholder="{{ c.id }}" form="my_form" value="{{ c.id }}" /></td> -->
                             <td>{{ c.id }}</td>
                             <td>{{ c.product_name }}</td>
                             <td>{{ c.quantity }}</td>
                             <td>{{ c.price }}</td>
                             <td>{{ c.status }}</td>
-                            <!-- <td><button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Edit<br></td> -->
                         </tr>
                         {% endfor %}
                     </tbody>
