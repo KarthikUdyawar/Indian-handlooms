@@ -98,9 +98,6 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
-
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" aria-current="page" id="profile" href="/profile">Profile</a>
                         </li> -->
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" id="profile" href="/order/{{email}}">Order</a>
@@ -108,13 +105,6 @@
                         <li class="nav-item">
                             <a class="nav-link" id="logout" href="/logout">Logout</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" id="login" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
-                        </li> -->
-
                     </ul>
                 </div>
 
@@ -139,7 +129,7 @@
                          </button>
         </div>
         {% endif%} {% endfor%} {% endif %} {% endwith %}
-        <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
+
         <br>
         <h3>Order</h3>
         <style>
@@ -192,10 +182,7 @@
                         </div>
                     </form>
                 </div>
-                <!-- ! Here -->
-                
-                
-                    
+
             </div>
             <br>
             <div class="container">
@@ -209,7 +196,6 @@
                                 <h5 class="card-title">{{ u.product_name }}</h5>
                                 <p class="card-text">{{u.company_Name}}</p>
                                 <p class="card-text" >{{' '.join(u.description.split()[:20])}} ...</p>
-                                <!-- <a href="/state/{{title}}/info/{{u.id}}">Info</a> -->
                                 <div class="d-grid gap-3 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244); margin:5px;"><a style="color: white;" href="/state/{{u.state}}/info/{{u.id}}">More Info</a>
                                     <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);  margin:5px;"><a style="color: white;" href="/order/{{cemail}}/booking/{{u.company_Name}}/{{u.product_name}}/{{u.id}}">Buy</a>
