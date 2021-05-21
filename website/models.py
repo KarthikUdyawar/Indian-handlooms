@@ -20,7 +20,7 @@ class Contact(db.Model):
     name = db.Column(db.String(150))
     email = db.Column(db.String(150)) 
     contact = db.Column(db.String(10)) 
-    company_Name = db.Column(db.String(150))
+    role = db.Column(db.String(10))
     message = db.Column(db.String(500))
     
 class Costumer(db.Model, UserMixin):

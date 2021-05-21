@@ -49,7 +49,8 @@ def contact():
         name = request.form.get('name')
         email = request.form.get('email')
         contact = request.form.get('contact')
-        cName = request.form.get('cName')
+        # cName = request.form.get('cName')
+        role = request.form.get('role')
         message = request.form.get('message')
         
         if len(name) < 3:
@@ -58,12 +59,13 @@ def contact():
             flash('Email must be at least 3 characters.',category='error')
         elif not (contact.isdigit() and len(contact) == 10):                            
             flash('Contact must be at 10 digits.', category='error')
-        elif len(cName) < 3:
-            flash('Company name must be at least 3 characters.',category='error')
+        # elif len(cName) < 3:
+        #     flash('Company name must be at least 3 characters.',category='error')
         elif len(message) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
-            feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+            # feedback = Contact(name=name, email=email, contact=contact, company_Name=cName, message=message)
+            feedback = Contact(name=name, email=email, contact=contact, role=role, message=message)
             db.session.add(feedback)
             db.session.commit()
             flash('Feedback successfully send!',category='success')

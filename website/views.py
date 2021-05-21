@@ -115,7 +115,9 @@ def profile():
 @views.route('/admin')
 def admin():
     feedback = Contact.query.all()
-    return render_template("admin.html", user=feedback)
+    order = Costumer.query.filter(not_(Costumer.contact == 'None'))
+    weavers = User.query.all()
+    return render_template("admin.html", feedback=feedback, order=order, user=weavers)
 
 @views.route('/order/<email>', methods=['GET','POST'])
 # @login_required
