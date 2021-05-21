@@ -18,7 +18,6 @@
 
 </head>
 
-
 {% block content %}
 <style>
     body {
@@ -130,7 +129,6 @@
             {% endif%} {% endfor%} {% endif %} {% endwith %}
 
         </section>
-        <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
         <br><br>
         <h3>Dashboard</h3><br><br>
         <h5 style="padding-left:130px; font-size: 25px; font-family: bold; font-weight: 600;text-transform: uppercase;">Interested Buyer Details -</h5>
@@ -201,11 +199,8 @@
                 </thead>
                 <tbody>
                     {% for c in user %}
-                    
                     <tr>
-                        
                         <td>{{ c.id }}</td>
-                        <!-- <td><input type="text" name="oid" class="form-control" id="oid" placeholder="{{ c.id }}" form="my_form" value="{{ c.id }}" /></td> -->
                         <td>{{ c.name }}</td>
                         <td>{{ c.email }}</td>
                         <td>{{ c.product_name }}</td>
@@ -213,26 +208,13 @@
                         <td>{{ c.contact }}</td>
                         <td>{{ c.address }}</td>
                         <td>{{ c.price }}</td>
-                        <!-- <td><input type="text" name="price" class="form-control" id="price" placeholder="{{ c.price }}" form="my_form" value="{{ c.price }}"/></td> -->
-                        <!-- <td><input type="text" name="price" class="form-control" id="price" placeholder="{{ c.price }}" form="my_form" /></td> -->
-                        <!-- <td><select id="status" style="border: white;" name="status"> 
-                            <option value="none">Order</option>
-                            <option value="accepted">Accepted</option>
-                            <option value="confirmed">Confirmed</option>
-                            </select>
-                        </td> -->
                         <td>{{ c.status }}</td>
-                        
-                        <!-- <td><button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Edit<br></td> -->
-                        
                     </tr>
-                    
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </header>
 </body>
-
 </html>
 {% endblock %}
