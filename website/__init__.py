@@ -29,11 +29,6 @@ def create_app():
     def load_user(id):
         return User.query.get(int(id))
     
-    
-    # @login_manager.user_loader
-    # def load_costumer(Cid):
-    #     return Costumer.query.get(int(Cid))
-    
     return app
     
 def create_database(app):
