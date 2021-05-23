@@ -101,6 +101,8 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        margin-left: 50px;
+        margin-right: 50px;
     }
     
     #knowmore .btn {
@@ -118,6 +120,8 @@
         margin-left: 150px;
         margin-right: 150px;
         font-size: 18px;
+        margin-left: 50px;
+        margin-right: 50px;
     }
     /*-------whyhandloom------*/
     
@@ -129,6 +133,8 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        margin-left: 50px;
+        margin-right: 50px;
     }
     
     #whyhandloom .btn {
@@ -143,7 +149,7 @@
         padding-top: 20px;
         display: flex;
         text-align: justify;
-        margin-left: 150px;
-        margin-right: 150px;
+        margin-left: 40px;
+        margin-right: 40px;
         font-size: 18px;
     }
