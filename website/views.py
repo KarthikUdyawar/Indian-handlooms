@@ -145,7 +145,7 @@ def cart(email):
             user = Costumer.query.filter_by(id = oid).first()
             user.status = 'Confirmed'
             db.session.commit()
-    return render_template("cart.html", user=cart)
+    return render_template("cart.html", user=cart, email=email)
 
 @views.route('/order/<email>/booking/<cname>/<pname>/<oid>', methods=['GET','POST'])
 def booking(email,cname,pname,oid):
@@ -172,9 +172,8 @@ def booking(email,cname,pname,oid):
 @login_required
 def dashboard(cname):
     order = Costumer.query.filter(and_(Costumer.company_Name == cname),(not_(Costumer.company_Name =='None')))
-    
     order_count = order.count()
-    print(order_count)
+    # print(order_count)
     if request.method == 'POST':  
         price = request.form.get('price')
         oid = request.form.get('oid')
