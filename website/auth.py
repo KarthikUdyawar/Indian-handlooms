@@ -84,6 +84,7 @@ def info(state_name,id):
 
 @auth.route('/login', methods=['GET','POST'])
 def login(): 
+    # print(generate_password_hash("SriJujaru Jayaprakash",method='sha256'))
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -156,7 +157,7 @@ def sign_up():
             elif len(password1) < 8:
                 flash('Password must be at least 7 characters.',category='error')
             else:
-                new_user = Costumer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', address='None',company_Name='None',product_name='None',quantity = 1,price='--',status='order')
+                new_user = Costumer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', address='None',company_Name='None',product_name='None',quantity = 1,price='--',status='Order')
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user,remember=True)

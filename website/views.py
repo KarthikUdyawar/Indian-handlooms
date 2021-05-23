@@ -160,7 +160,7 @@ def booking(email,cname,pname,oid):
         elif len(address) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
-            user = Costumer.query.filter(and_(not_(Costumer.id == oid),(Costumer.email == email))).first()
+            user = Costumer.query.filter(and_((Costumer.id == oid),(Costumer.email == email))).first()
             new_user = Costumer(email=email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
             db.session.add(new_user)
             db.session.commit()
