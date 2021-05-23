@@ -28,56 +28,12 @@
 </style>
 
 <body style="background-color:rgb(243, 252, 253);">
-    <button onclick="topFunction()" id="myBtn" title="Go to top">⮝</button>
-    <style>
-        #myBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 99;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: blue;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 4px;
-        }
-        
-        #myBtn:hover {
-            background-color: rgb(0, 132, 255);
-        }
-    </style>
-    <script>
-        //Get the button
-        var mybutton = document.getElementById("myBtn");
-        
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-        
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-            }  else {
-            mybutton.style.display = "none";
-            }
-        }
-        
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-        </script>
     <header>
         <!-------Navigationbar------>
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/" style="color: white;">
-                    <img src="\static\images\icon\logo1.png" alt="" width="60" height="60">
-                    India Handlooms
+                    <img src="\static\images\icon\logo1.png" alt="" width="60" height="60"> India Handlooms
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -98,6 +54,9 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
+
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" aria-current="page" id="profile" href="/profile">Profile</a>
                         </li> -->
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" id="profile" href="/order/{{email}}">Order</a>
@@ -105,12 +64,19 @@
                         <li class="nav-item">
                             <a class="nav-link" id="logout" href="/logout">Logout</a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" id="login" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                        </li> -->
+
                     </ul>
                 </div>
 
             </nav>
 
-        </section><br>
+        </section><br><br><br>
 
         <!-- message flash -->
         {% with messages = get_flashed_messages(with_categories = true) %} {% if messages %} {% for category, message in messages %} {% if category == 'error' %}
@@ -129,7 +95,7 @@
                          </button>
         </div>
         {% endif%} {% endfor%} {% endif %} {% endwith %}
-
+        <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
         <br>
         <h3>Order</h3>
         <style>
@@ -182,23 +148,27 @@
                         </div>
                     </form>
                 </div>
+                <!--Here -->
+
+
 
             </div>
             <br>
             <div class="container">
-                
+
                 <div class="row row-cols-3">
                     {% for u in user %}
                     <div class="col" style="margin: auto; padding: 10px;">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 18rem;height: 550px;">
                             <img src="{{u.image[7:]}}" class="card-img-top" alt="{{u.description}}" height="200">
                             <div class="card-body">
                                 <h5 class="card-title">{{ u.product_name }}</h5>
                                 <p class="card-text">{{u.company_Name}}</p>
-                                <p class="card-text" >{{' '.join(u.description.split()[:20])}} ...</p>
-                                <div class="d-grid gap-3 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244); margin:5px;"><a style="color: white;" href="/state/{{u.state}}/info/{{u.id}}">More Info</a>
-                                    <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);  margin:5px;"><a style="color: white;" href="/order/{{cemail}}/booking/{{u.company_Name}}/{{u.product_name}}/{{u.id}}">Buy</a>
+                                <p class="card-text">{{' '.join(u.description.split()[:20])}} ...</p>
+                                <!-- <a href="/state/{{title}}/info/{{u.id}}">Info</a> -->
+                                <div style="align-items: center; margin-bottom: 5px; ">
+                                    <button type="button" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244); margin:5px;"><a style=" color: white; " href="/state/{{u.state}}/info/{{u.id}} ">More Info</a>
+                                    <button type="button " class="btn btn-primary " style=" outline-color: rgb(250, 244, 244); margin:5px; "><a style="color: white; " href="/order/{{cemail}}/booking/{{u.company_Name}}/{{u.product_name}}/{{u.id}} ">Buy</a>
                                 </div>
                             </div>
                         </div>
