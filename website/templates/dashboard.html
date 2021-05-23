@@ -18,6 +18,7 @@
 
 </head>
 
+
 {% block content %}
 <style>
     body {
@@ -29,56 +30,12 @@
 </style>
 
 <body style="background-color:rgb(145, 178, 182);">
-    <button onclick="topFunction()" id="myBtn" title="Go to top">⮝</button>
-    <style>
-        #myBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 99;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: blue;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 4px;
-        }
-        
-        #myBtn:hover {
-            background-color: rgb(0, 132, 255);
-        }
-    </style>
-    <script>
-        //Get the button
-        var mybutton = document.getElementById("myBtn");
-        
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-        
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-            }  else {
-            mybutton.style.display = "none";
-            }
-        }
-        
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-        </script>
     <header>
         <!-------Navigationbar------>
         <section id="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/" style="color: white;">
-                    <img src="\static\images\icon\logo1.png" alt="" width="60" height="60">
-                    India Handlooms
+                    <img src="\static\images\icon\logo1.png" alt="" width="60" height="60"> India Handlooms
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -129,7 +86,8 @@
             {% endif%} {% endfor%} {% endif %} {% endwith %}
 
         </section>
-        <br><br>
+        <!--<div style="background-image: url(../images/img/stateimg.jpeg);">-->
+        <br><br><br>
         <h3>Dashboard</h3><br><br>
         <h5 style="padding-left:130px; font-size: 25px; font-family: bold; font-weight: 600;text-transform: uppercase;">Interested Buyer Details -</h5>
         <style>
@@ -152,19 +110,19 @@
                     <label for="oid" class="col-sm-2 col-form-label">Order ID: </label>
                 </div>
                 <div class="col-sm-2" style="font-weight: bold;">
-                    
-                    <input type="text" name="oid" class="form-control" id="oid" placeholder="" form="my_form"  />
+
+                    <input type="text" name="oid" class="form-control" id="oid" placeholder="" form="my_form" />
                 </div>
                 <div class="col-sm-2" style="font-weight: bold;">
                     `<label for="price" class="col-sm-2 col-form-label">Price: </label>
                 </div>
                 <div class="col-sm-2" style="font-weight: bold;">
-                    
+
                     <input type="text" name="price" class="form-control" id="price" placeholder="" form="my_form" />
                 </div>
                 <div class="col-sm-2" style="padding-left: 250px;">
-                    <button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244); width: 100px;" form="my_form" >Edit</button>
-                </div> 
+                    <button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244); width: 100px;" form="my_form">Edit</button>
+                </div>
             </form>
             <br>
             <table class="table">
@@ -183,7 +141,7 @@
                         border-collapse: collapse;
                     }
                 </style>
-                
+
                 <thead>
                     <tr>
                         <th scope="col">Order Id</th>
@@ -194,13 +152,17 @@
                         <th scope="col">Contact</th>
                         <th scope="col">Address</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Payment</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for c in user %}
+
                     <tr>
+
                         <td>{{ c.id }}</td>
+                        <!-- <td><input type="text" name="oid" class="form-control" id="oid" placeholder="{{ c.id }}" form="my_form" value="{{ c.id }}" /></td> -->
                         <td>{{ c.name }}</td>
                         <td>{{ c.email }}</td>
                         <td>{{ c.product_name }}</td>
@@ -208,13 +170,28 @@
                         <td>{{ c.contact }}</td>
                         <td>{{ c.address }}</td>
                         <td>{{ c.price }}</td>
+                        <td>Cash on Delivery</td>
+
+                        <!-- <td><input type="text" name="price" class="form-control" id="price" placeholder="{{ c.price }}" form="my_form" value="{{ c.price }}"/></td> -->
+                        <!-- <td><input type="text" name="price" class="form-control" id="price" placeholder="{{ c.price }}" form="my_form" /></td> -->
+                        <!-- <td><select id="status" style="border: white;" name="status"> 
+                            <option value="none">Order</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="confirmed">Confirmed</option>
+                            </select>
+                        </td> -->
                         <td>{{ c.status }}</td>
+
+                        <!-- <td><button type="submit" class="btn btn-primary" style=" outline-color: rgb(250, 244, 244);" form="my_form" >Edit<br></td> -->
+
                     </tr>
+
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </header>
 </body>
+
 </html>
 {% endblock %}
