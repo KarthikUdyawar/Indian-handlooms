@@ -27,7 +27,9 @@ def allowed_image_filesize(filesize):
 @views.route('/profile', methods=['GET','POST'])
 @login_required
 def profile():
-    order = Costumer.query.filter_by(company_Name = current_user.company_Name)
+    # order = Costumer.query.filter_by(company_Name = current_user.company_Name)
+    order = Costumer.query.filter(and_(not_(Costumer.product_name == 'None'),(Costumer.company_Name == current_user.company_Name)))
+    
     order_count = order.count()
     if request.method == 'POST':  
         cName = request.form.get('cName')
@@ -169,8 +171,10 @@ def booking(email,cname,pname,oid):
 @views.route('/profile/dashboard/<cname>', methods=['GET','POST'])
 @login_required
 def dashboard(cname):
-    order = Costumer.query.filter_by(company_Name = cname)
+    order = Costumer.query.filter(and_(Costumer.company_Name == cname),(not_(Costumer.company_Name =='None')))
+    
     order_count = order.count()
+    print(order_count)
     if request.method == 'POST':  
         price = request.form.get('price')
         oid = request.form.get('oid')
