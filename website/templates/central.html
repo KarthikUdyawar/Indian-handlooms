@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="\static\images\icon\logo1.png">
-    
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wdbstyle.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -46,53 +46,14 @@
             height: 350px;
             margin-left: 20px;
         }
+        
+        .img-fluid {
+            height: 250px;
+        }
     </style>
 </head>
 
 <body>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">⮝</button>
-    <style>
-        #myBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 99;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            background-color: blue;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 4px;
-        }
-        
-        #myBtn:hover {
-            background-color: rgb(0, 132, 255);
-        }
-    </style>
-    <script>
-        //Get the button
-        var mybutton = document.getElementById("myBtn");
-        
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-        
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-            }  else {
-            mybutton.style.display = "none";
-            }
-        }
-        
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-        </script>
     <header>
         <!-------Navigationbar------>
         <section id="nav-bar">
@@ -159,13 +120,13 @@
                     </div>
                 </div>
             </div>
-            <p style="padding-right: 20px; text-align: justify;" >
-                Madhya Pradesh is known for various printing techniques namely hand-block printing using mainly natural colors, batik printing and techniques of tying and dyeing known as Bandhini. Weaving specialties of Madhya Pradesh are Chanderi and Maheshwari
-                silk and cotton clothes.If you are talking about quintessential Madhya Pradesh textiles then hand-block printing the first thing that comes to mind. There are various subgroups or specialties of this type of printing. The main feature
-                of it is that it uses all-natural colors extracted from vegetables, roots of plants called ‘Aal’, and indigo. The famous ‘bagh print‘ native to Bagh in Dhar district uses colors extracted from ‘Aal’ plant roots. The shades of red and black
-                are predominant in this printing, it also provides a 3D effect because of the intricately carved motifs which are used herein Bagh.Centuries-old Indian techniques of tying and dyeing a cloth fabric. Bandhani comes from the Sanskrit word
-                banda which means “to tie”. A very delicate and painstaking job. The main colours used in Bandhani are yellow, red, green and black. The technique involves making small beads all over the cloth by tieing threads which is done mainly by
-                women, then the cloth is dipped in a light colour. The entire cloth gets dyed only except the tied part which retain the ground colour.</p>
+            <p style="padding-right: 20px; text-align: justify;">
+                Madhya Pradesh is known for various printing techniques namely hand-block printing using mainly natural colors, batik printing and techniques of tying and dyeing known as Bandhini. Weaving specialties of Madhya Pradesh are Chanderi and Maheshwari silk
+                and cotton clothes.If you are talking about quintessential Madhya Pradesh textiles then hand-block printing the first thing that comes to mind. There are various subgroups or specialties of this type of printing. The main feature of it
+                is that it uses all-natural colors extracted from vegetables, roots of plants called ‘Aal’, and indigo. The famous ‘bagh print‘ native to Bagh in Dhar district uses colors extracted from ‘Aal’ plant roots. The shades of red and black are
+                predominant in this printing, it also provides a 3D effect because of the intricately carved motifs which are used herein Bagh.Centuries-old Indian techniques of tying and dyeing a cloth fabric. Bandhani comes from the Sanskrit word banda
+                which means “to tie”. A very delicate and painstaking job. The main colours used in Bandhani are yellow, red, green and black. The technique involves making small beads all over the cloth by tieing threads which is done mainly by women,
+                then the cloth is dipped in a light colour. The entire cloth gets dyed only except the tied part which retain the ground colour.</p>
             <hr>
             <div class="text-center">
                 <h2>CHHATTISHGARH</h2>
@@ -183,13 +144,13 @@
                     </div>
                 </div>
             </div>
-            <p style="padding-right: 20px; text-align: justify;" >
-                Chhattisgarh is one of the 28 states of India, located in the centre-east of the country. It is the ninth-largest state in India. The textiles here are woven in heavy cotton. Keeping the public demand saris are now also being woven in finer
-                counts as well as combination weaving of cotton and tussar. Traditional way of weaving on manual looms is followed at Bastar having motifs of birds, lions bows, animals, arrows, huts, peacocks, pitchers, temples and tribal flowers. These
-                fabrics are worn by the tribals on the auspicious of festivals, marriages and dances.Kosa silk is obtained from an Indian silkworm – Antheraea mylitta and is a variety of Tussar silk. It is drawn out of cocoons which are especially grown
-                on specific trees known as Arjun, Saja and Sal. Kosa silk is known for its sturdiness and is preferred to pure silk in the state of Chhattisgarh. Known the world over for its soft texture and purity, this version of Tussar silk is produced
-                exclusively in India. Known for its dull golden brownish look, it is available naturally in shades of pale golden, dark honey, orange, fawn, cream and many more; all similar to the description of dull golden brown. From the original color
-                of Kosa silk which is dull gold, the finished product is dyed using natural dyes from the palaas flower (Fire flower), the red pollen of the Rora Flower and the deep rose red from lac and some more natural contributors.</p>
+            <p style="padding-right: 20px; text-align: justify;">
+                Chhattisgarh is one of the 28 states of India, located in the centre-east of the country. It is the ninth-largest state in India. The textiles here are woven in heavy cotton. Keeping the public demand saris are now also being woven in finer counts as
+                well as combination weaving of cotton and tussar. Traditional way of weaving on manual looms is followed at Bastar having motifs of birds, lions bows, animals, arrows, huts, peacocks, pitchers, temples and tribal flowers. These fabrics
+                are worn by the tribals on the auspicious of festivals, marriages and dances.Kosa silk is obtained from an Indian silkworm – Antheraea mylitta and is a variety of Tussar silk. It is drawn out of cocoons which are especially grown on specific
+                trees known as Arjun, Saja and Sal. Kosa silk is known for its sturdiness and is preferred to pure silk in the state of Chhattisgarh. Known the world over for its soft texture and purity, this version of Tussar silk is produced exclusively
+                in India. Known for its dull golden brownish look, it is available naturally in shades of pale golden, dark honey, orange, fawn, cream and many more; all similar to the description of dull golden brown. From the original color of Kosa
+                silk which is dull gold, the finished product is dyed using natural dyes from the palaas flower (Fire flower), the red pollen of the Rora Flower and the deep rose red from lac and some more natural contributors.</p>
         </div>
         {% endblock %}
         <br>
