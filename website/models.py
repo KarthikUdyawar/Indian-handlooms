@@ -23,7 +23,7 @@ class Contact(db.Model):
     role = db.Column(db.String(10))
     message = db.Column(db.String(500))
     
-class Costumer(db.Model, UserMixin):
+class Customer(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
     email = db.Column(db.String(150)) 

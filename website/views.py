@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from .models import User ,Contact, Costumer
+from .models import User ,Contact, Customer
 from . import db
 from sqlalchemy import and_,not_
 import os
@@ -27,8 +27,8 @@ def allowed_image_filesize(filesize):
 @views.route('/profile', methods=['GET','POST'])
 @login_required
 def profile():
-    # order = Costumer.query.filter_by(company_Name = current_user.company_Name)
-    order = Costumer.query.filter(and_(not_(Costumer.product_name == 'None'),(Costumer.company_Name == current_user.company_Name)))
+    # order = Customer.query.filter_by(company_Name = current_user.company_Name)
+    order = Customer.query.filter(and_(not_(Customer.product_name == 'None'),(Customer.company_Name == current_user.company_Name)))
     
     order_count = order.count()
     if request.method == 'POST':  
@@ -115,14 +115,14 @@ def profile():
 @views.route('/admin')
 def admin():
     feedback = Contact.query.all()
-    order = Costumer.query.filter(not_(Costumer.contact == 'None'))
+    order = Customer.query.filter(not_(Customer.contact == 'None'))
     weavers = User.query.all()
     return render_template("admin.html", feedback=feedback, order=order, user=weavers)
 
 @views.route('/order/<email>', methods=['GET','POST'])
 def order(email):
     product = User.query.all()
-    cart = Costumer.query.filter_by(email = email)
+    cart = Customer.query.filter_by(email = email)
     cart_count = cart.count() - 1
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
@@ -133,16 +133,16 @@ def order(email):
 
 @views.route('/order/cart/<email>', methods=['GET','POST'])
 def cart(email):
-    cart = Costumer.query.filter(and_((Costumer.email == email),not_(Costumer.product_name == 'None')))
+    cart = Customer.query.filter(and_((Customer.email == email),not_(Customer.product_name == 'None')))
     if request.method == 'POST': 
         oid = request.form.get('oid')
-        user = Costumer.query.get(oid)
+        user = Customer.query.get(oid)
         if len(oid) < 1:
             flash('Please enter the order id.',category='error')
         elif user.status == 'order':
             flash('Please wait for weaver responce',category='error')
         else:
-            user = Costumer.query.filter_by(id = oid).first()
+            user = Customer.query.filter_by(id = oid).first()
             user.status = 'Confirmed'
             db.session.commit()
     return render_template("cart.html", user=cart, email=email)
@@ -160,8 +160,8 @@ def booking(email,cname,pname,oid):
         elif len(address) < 3:
             flash('Message must be at least 3 characters.',category='error')    
         else:
-            user = Costumer.query.filter(and_(not_(Costumer.id == oid),(Costumer.email == email))).first()
-            new_user = Costumer(email=email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
+            user = Customer.query.filter(and_(not_(Customer.id == oid),(Customer.email == email))).first()
+            new_user = Customer(email=email, name=user.name, password=user.password, contact=contact, address=address,company_Name=cname,product_name=pname,quantity = quantity,price='--',status='order')
             db.session.add(new_user)
             db.session.commit()
             flash('successfully send!',category='success')
@@ -171,7 +171,7 @@ def booking(email,cname,pname,oid):
 @views.route('/profile/dashboard/<cname>', methods=['GET','POST'])
 @login_required
 def dashboard(cname):
-    order = Costumer.query.filter(and_(Costumer.company_Name == cname),(not_(Costumer.company_Name =='None')))
+    order = Customer.query.filter(and_(Customer.company_Name == cname),(not_(Customer.company_Name =='None')))
     order_count = order.count()
     # print(order_count)
     if request.method == 'POST':  
@@ -182,7 +182,7 @@ def dashboard(cname):
         elif len(price) < 1:
             flash('Please enter the price.',category='error')  
         else:
-            user = Costumer.query.filter_by(id = oid).first()
+            user = Customer.query.filter_by(id = oid).first()
             user.price = price
             user.status = 'Accepted'
             db.session.commit()

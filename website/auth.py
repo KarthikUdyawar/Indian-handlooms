@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, Contact, Costumer
+from .models import User, Contact, Customer
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, login_user, logout_user, current_user
@@ -103,8 +103,8 @@ def login():
                     flash('Incorrect password',category='error')
             else:
                 flash('User does not exist!',category='error')
-        elif role == 'costumer':
-            user = Costumer.query.filter_by(email=email).first()
+        elif role == 'customer':
+            user = Customer.query.filter_by(email=email).first()
             if user:
                 if check_password_hash(user.password, password):
                     flash('Login successfully!',category='success')
@@ -144,8 +144,8 @@ def sign_up():
                 login_user(new_user,remember=True)
                 flash('Account created!.',category='success')
                 return redirect(url_for('views.profile'))
-        elif role == 'costumer':
-            user = Costumer.query.filter_by(email=email).first()
+        elif role == 'customer':
+            user = Customer.query.filter_by(email=email).first()
             if user:
                 flash('Email already exists.', category='error')
             elif len(email) < 4:
@@ -157,7 +157,7 @@ def sign_up():
             elif len(password1) < 8:
                 flash('Password must be at least 7 characters.',category='error')
             else:
-                new_user = Costumer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', address='None',company_Name='None',product_name='None',quantity = 1,price='--',status='Order')
+                new_user = Customer(email=email, name=firstName, password=generate_password_hash(password1,method='sha256'), contact='None', address='None',company_Name='None',product_name='None',quantity = 1,price='--',status='Order')
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user,remember=True)
